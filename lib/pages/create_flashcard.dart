@@ -42,7 +42,12 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                     labelText: 'Question',
                   ),
     
-                
+                validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
  
                 ),
 
@@ -52,6 +57,13 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                   decoration: InputDecoration(
                     labelText: 'Answer',
                   ),
+
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter some text';
+                    }
+                    return null;
+                  },
     
                 
  
@@ -64,11 +76,16 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
 
                 ElevatedButton(onPressed: (){
 
-                    flashCardController.createFlashCard(
+                                      if (formKey.currentState!.validate()) {
+
+           flashCardController.createFlashCard(
                       context, 
                       questionController.text, 
                       answerController.text
                     );
+                                      }
+
+         
 
                 }, child: Text('Create Flashcard')
       )
