@@ -1,6 +1,8 @@
 // import 'package:/flu';
+import 'dart:async';
+import 'dart:core';
+
 import 'package:flash_card_app/main.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 
 
@@ -8,6 +10,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class AuthService {
 
 
+
+  Future<void> signOut() async {
+    await supabase.auth.signOut();
+  }
+  
  
 // Future<AuthResponse> signInWithUsernameAndPassword(String username, String password) async {
 //   final response = await Supabase.instance.client.auth.signInWith(
@@ -27,6 +34,7 @@ class AuthService {
     }
     return User;
   }
+
 
 
 }
