@@ -1,4 +1,5 @@
 import 'package:flash_card_app/main.dart';
+import 'package:flash_card_app/models/flashcard_sets.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -26,4 +27,11 @@ class FlashcardController {
       ),
     );
   }
+
+  // Future<List<FlashcardSets>> retrieveFlashCardsSett() {
+
+
+  // }
+
+
 }
