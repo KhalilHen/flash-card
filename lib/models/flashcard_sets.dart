@@ -4,7 +4,7 @@ class FlashCardSets {
 
   final int id;
   final String title;
-  final List<Flashcard> flashcards;
+  final List<FlashCard> flashcards;
 
 
   FlashCardSets({

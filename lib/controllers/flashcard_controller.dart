@@ -1,4 +1,5 @@
 import 'package:flash_card_app/main.dart';
+import 'package:flash_card_app/models/flashcard_model.dart';
 import 'package:flash_card_app/models/flashcard_sets.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,10 +29,26 @@ class FlashcardController {
     );
   }
 
-  // Future<List<FlashcardSets>> retrieveFlashCardsSett() {
+  Future<List<FlashCard>> retrieveEveryPublicFlashCard() async {
+    final flashCardSets = await supabase.from('flash_card_set').select('id').eq('status', 'public');
+    if (flashCardSets == null || flashCardSets.isEmpty) {
+      print('No public flash card sets found');
+      return [];
+    }
 
+    final setIds = flashCardSets.map((set) => set['id']).toList();
+    final response = await supabase.from('flash_card').select().inFilter('set_id', setIds);
+ print(response); 
 
-  // }
+    if (response == null || response.isEmpty) {
+      print('No flashcards found for public sets');
+      return [];
+    }
 
+    return response.map<FlashCard>((flashCard) => FlashCard.fromMap(flashCard)).toList();
+  }
 
+ 
 }
+
+
