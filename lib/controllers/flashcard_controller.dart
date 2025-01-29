@@ -12,6 +12,7 @@ class FlashcardController {
       'question': question,
       'answer': answer,
       // 'set_id': 1,
+      
     }).select();
 
     if (response == null || response.isEmpty) {
