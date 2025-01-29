@@ -1,4 +1,5 @@
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
+import 'package:flash_card_app/pages/display_flashcard_sets.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -56,7 +57,9 @@ class _HomepageState extends State<HomePage> {
   //Custom app bar 
   Navigator.push(
     context,
-    MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
+    MaterialPageRoute(builder: (context) => DisplayFlashcardSets()),
+        // MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
+
     
   );
     },

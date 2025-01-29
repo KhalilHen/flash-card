@@ -1,4 +1,5 @@
 import 'package:flash_card_app/main.dart';
+import 'package:flash_card_app/models/flashcard_sets.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -25,4 +26,20 @@ class FlashcardSetController {
       ),
     );
   }
+
+  Future<List<Map<String, dynamic>>> retrievePublicFlashCardSets() async {
+    final response = await supabase.from('flash_card_set').select().eq('status', 'public');
+
+    if (response == null || response.isEmpty) {
+      print('Failed to retrieve flashcard sets');
+      return [];
+    }
+  print(response);
+    return List<Map<String, dynamic>>.from(response);
+  }
+
+  // Future<List<FlashCardSets>> retrievePrivateFlashCardSets() {
+
+
+  // }
 }
