@@ -37,4 +37,27 @@ class AuthService {
 
 
 
+
+ Future<String?> getLoggedInUsername() async {
+    final session = supabase.auth.currentSession;
+    final userId = session?.user.id;
+
+    if (userId == null) {
+      print('No authenticated user found.');
+      return null;
+    }
+
+
+    final response = await supabase.from('persons').select('username').eq('id', userId).single();
+
+    if (response == null) {
+      print('No matching person found for user ID: $userId');
+      return null;
+    }
+
+    final username = response['username'];
+    print('Username: $username');
+    return username;
+  }
+
 }
