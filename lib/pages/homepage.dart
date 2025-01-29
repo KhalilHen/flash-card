@@ -1,3 +1,4 @@
+import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -48,10 +49,21 @@ class _HomepageState extends State<HomePage> {
       
       ),
       ),
+    floatingActionButton: FloatingActionButton(onPressed: () {
+
+
+   
+  //Custom app bar 
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
     
+  );
+    },
+    child: Icon(Icons.add),
+    ),
     );
   }
-  //Custom app bar 
   Widget customAppBar() {
     return Container(
 
@@ -77,6 +89,7 @@ class _HomepageState extends State<HomePage> {
   Widget welcomeContainer() {
 
      return Container(
+      
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: Colors.white.withAlpha(38),
@@ -111,7 +124,11 @@ class _HomepageState extends State<HomePage> {
 
         children: [
           Expanded(child:  actionButton(context, "Public flashcards", Icons.public , () {} ,    ),), 
+    SizedBox(width: 25,),
+    Expanded(child: actionButton(context, "My sets", Icons.folder,  () {
 
+      
+    }))
         ],
       )
       ],
@@ -126,11 +143,12 @@ class _HomepageState extends State<HomePage> {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: Colors.white,
+          // color: Colors.white,
+          color: Colors.grey[100], //giving bit of grey tint
           borderRadius:  BorderRadius.circular(16),
           boxShadow: [
 
-            BoxShadow(color: Colors.black.withOpacity(0.1),
+            BoxShadow(color: Colors.black.withAlpha(25),
             blurRadius: 10,
             offset: Offset(0, 4)
             )
@@ -154,7 +172,9 @@ child: Column(
 ),
       ),
     );
+ 
   }
+  
  
 
 }

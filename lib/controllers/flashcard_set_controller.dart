@@ -4,9 +4,10 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FlashcardSetController {
 
-  Future<void> createFlashCardSet(BuildContext context, String title,  ) async {
+  Future<void> createFlashCardSet(BuildContext context, String title, String status  ) async {
     final response = await supabase.from('flash_card_set').insert({
       'title':  title,
+      'status': status,
  
     }).select();
 
