@@ -2,6 +2,7 @@ import 'package:flash_card_app/auth/auth_provider.dart';
 import 'package:flash_card_app/auth/auth_service.dart';
 import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
+import 'package:flash_card_app/pages/sign-up.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -145,6 +146,30 @@ class _LoginPageState extends State<LoginPage> {
                                   "Login",
                                   style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
                                 ),
+                              ),
+                              SizedBox(
+                                height: 23,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Don''t have an account",
+                                    style: GoogleFonts.poppins(color: Colors.white.withAlpha(204)),
+                                  ),
+                                  TextButton(
+                                      onPressed: () {
+
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                                      },
+                                      child: Text(
+                                        "Sign up!",
+                                        style: GoogleFonts.poppins(
+                                            // fontWeight: FontWeight.bold,
+                                            //  color: null
+                                            color: Colors.white.withAlpha(204)),
+                                      ))
+                                ],
                               )
                             ],
                           ),

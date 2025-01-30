@@ -1,3 +1,4 @@
+import 'package:flash_card_app/auth/auth_service.dart';
 import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
@@ -20,6 +21,22 @@ class HomePage extends StatefulWidget {
 
 class _HomepageState extends State<HomePage> {
   LinearGradient currentGradient = oceanBlueGradient;
+
+//* Auth
+  final authService = AuthService();
+  String? username;
+  @override
+  void initState() {
+    super.initState();
+    fetchUsername();
+  }
+
+  Future<void> fetchUsername() async {
+    final fetchedUsername = await authService.getLoggedInUsername();
+    setState(() {
+      username = fetchedUsername;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,26 +130,39 @@ class _HomepageState extends State<HomePage> {
 
   Widget welcomeContainer() {
     return Container(
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(38),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //TODO Later add when user is logged in output: "Welcome back" else just "Welcome"
-          Text(
-            "Welcom back",
-            style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
-          Text(
-            "Ready to continue learning?",
-            style: GoogleFonts.poppins(fontSize: 16, color: Colors.white.withAlpha(204)),
-          )
-        ],
-      ),
-    );
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white.withAlpha(38),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: username != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Welcome back $username!",
+                    style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  Text(
+                    "Ready to continue learning?",
+                    style: GoogleFonts.poppins(fontSize: 16, color: Colors.white.withAlpha(204)),
+                  )
+                ],
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Welcome!",
+                    style: GoogleFonts.poppins(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                  ),
+                  //TODO Improve the text
+                  Text(
+                    "Ready to learn new things?",
+                    style: GoogleFonts.poppins(fontSize: 16, color: Colors.white.withAlpha(204)),
+                  )
+                ],
+              ));
   }
 
   Widget actionsContainer(BuildContext context) {

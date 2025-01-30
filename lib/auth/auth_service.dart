@@ -13,20 +13,19 @@ class AuthService {
     await supabase.auth.signOut();
   }
 
-  Future<void> checkUser(String email, String password, GlobalKey<FormState> formKey, authProvider, BuildContext context)async {
-
-       if (formKey.currentState!.validate()) {
+  Future<void> checkUser(String email, String password, GlobalKey<FormState> formKey, authProvider, BuildContext context) async {
+    if (formKey.currentState!.validate()) {
       try {
         await authProvider.login(email, password);
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => HomePage()),
         );
-    
       } catch (e) {
         ScaffoldMessenger.of(formKey.currentContext!).showSnackBar(SnackBar(content: Text('Error: $e')));
       }
     }
   }
+
   Future<String?> getLoggedInUser() async {
     final session = supabase.auth.currentSession;
     final User = session?.user.id;
@@ -48,7 +47,7 @@ class AuthService {
       return null;
     }
 
-    final response = await supabase.from('persons').select('username').eq('id', userId).single();
+    final response = await supabase.from('person').select('username').eq('id', userId).single();
 
     if (response == null) {
       print('No matching person found for user ID: $userId');
@@ -58,5 +57,37 @@ class AuthService {
     final username = response['username'];
     print('Username: $username');
     return username;
+  }
+
+
+
+ Future<bool> isEmailAvailable(String email) async {
+    try {
+      final response = await supabase.from('person').select().match({'email': email}).maybeSingle();
+
+      return response == null;
+    } catch (e) {
+      print('Error: $e');
+      throw e;
+    }
+  }
+
+  bool isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[a-zA-Z0-9_]{3,}$');
+    return emailRegex.hasMatch(email);
+  } 
+
+
+    Future<bool> isUsernameAvailable(String username) async {
+    try {
+    
+      final response = await Supabase.instance.client.from('person').select().match({'username': username}).maybeSingle();
+
+      return response == null;
+    } catch (e) {
+      print('Error: $e');
+      throw e;
+    }
+  
   }
 }
