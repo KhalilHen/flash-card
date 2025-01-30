@@ -1,4 +1,6 @@
+import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
+import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/display_flashcard_sets.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,13 @@ class _HomepageState extends State<HomePage> {
         child: SafeArea(
             child: Column(
           children: [
-            customAppBar(),
+            // customAppBar(),
+            CustomAppBar(
+              title: "Flashcard App",
+              onThemePressed: () {
+                customColorPickerDialog();
+              },
+            ),
             // SizedBox(height: 24,),
             Expanded(
               child: SingleChildScrollView(
@@ -49,53 +57,54 @@ class _HomepageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //Custom app bar
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => DisplayFlashcardSets()),
-            // MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => DisplayFlashcardSets()),
+          //   // MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
+          // );
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
         },
         child: Icon(Icons.add),
       ),
     );
   }
 
-  Widget customAppBar() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text("Flashcard App", style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+  // Widget customAppBar() {
+  //   return Container(
+  //     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  //     child: Row(
+  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //       children: [
+  //         Text("Flashcard App", style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
 
-          // TODO Add here a iconbutton to change the   theme style.
-          // IconButton(onPressed: () {}, icon: Icon(Icons.circle_)),
-          Row(
-            children: [
-              IconButton(
-                onPressed: () {
-                  customColorPickerDialog();
-                },
-                icon: Icon(Icons.palette),
-                color: Colors.white.withAlpha(77),
-                tooltip: "Change theme",
-                // iconSize: 22,
-                iconSize: 38,
-              ),
-              CircleAvatar(
-                backgroundColor: Colors.white.withAlpha(77),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.person),
-                  tooltip: "View profile",
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  //         // TODO Add here a iconbutton to change the   theme style.
+  //         // IconButton(onPressed: () {}, icon: Icon(Icons.circle_)),
+  //         Row(
+  //           children: [
+  //             IconButton(
+  //               onPressed: () {
+  //                 customColorPickerDialog();
+  //               },
+  //               icon: Icon(Icons.palette),
+  //               color: Colors.white.withAlpha(77),
+  //               tooltip: "Change theme",
+  //               // iconSize: 22,
+  //               iconSize: 38,
+  //             ),
+  //             CircleAvatar(
+  //               backgroundColor: Colors.white.withAlpha(77),
+  //               child: IconButton(
+  //                 onPressed: () {},
+  //                 icon: Icon(Icons.person),
+  //                 tooltip: "View profile",
+  //               ),
+  //             )
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Widget welcomeContainer() {
     return Container(
