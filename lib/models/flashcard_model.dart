@@ -1,11 +1,11 @@
 class FlashCard {
-  final int id; 
+  final int id;
   final int setId;
 
   final String question;
   final String answer;
 
-   FlashCard({
+  FlashCard({
     required this.id,
     required this.setId,
     required this.question,

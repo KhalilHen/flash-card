@@ -1,4 +1,5 @@
 import 'package:flash_card_app/controllers/flashcard_controller.dart';
+import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
 import 'package:flash_card_app/models/flashcard_model.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
@@ -13,6 +14,7 @@ class CreateFlashCard extends StatefulWidget {
 }
 
 class _CreateFlashCardState extends State<CreateFlashCard> {
+  final flashCardSetController = FlashcardSetController();
   final formKey = GlobalKey<FormState>();
   final questionController = TextEditingController();
   final answerController = TextEditingController();
@@ -106,6 +108,33 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                           SizedBox(
                             height: 20,
                           ),
+                          // //TODO Improve later the pop-up inside the dropdown
+                          DropdownButtonFormField<String>(
+                            dropdownColor: Colors.white.withAlpha(230),
+                            decoration: InputDecoration(
+                              labelText: 'Flashcard set',
+                              labelStyle: TextStyle(color: Colors.white),
+                              enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.white.withAlpha(128)),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: BorderSide(color: Colors.white),
+                              ),
+                              filled: true,
+                              fillColor: Colors.white.withAlpha(25),
+                            ),
+                            style: TextStyle(color: Colors.white),
+                            icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                            items: ['Math', 'Science', 'History', 'Language'].map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value, style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500)),
+                              );
+                            }).toList(),
+                            onChanged: (value) {},
+                          ),
 
                           // ! In future another formfield option to adda  false answer
                           SizedBox(
@@ -138,6 +167,13 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
             ],
           ),
         ),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
+          flashCardSetController.retrieveAllFlashCardSets();
+        },
       ),
     );
   }

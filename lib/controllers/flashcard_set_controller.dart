@@ -36,17 +36,20 @@ class FlashcardSetController {
     return List<Map<String, dynamic>>.from(response);
   }
 
-  Future<List<Map<String, dynamic>>> retrieveAllFlashCardSets() async {
+  Future<List<FlashCardSets>> retrieveAllFlashCardSets() async {
     final response = await supabase.from('flash_card_set').select();
     if (response == null || response.isEmpty) {
       print('Failed to retrieve flashcard sets');
     }
     print(response);
 
-    return List<Map<String, dynamic>>.from(response);
+    // return List<Map<String, dynamic>>.from(response);
+    return response.map<FlashCardSets>((flashCard) => FlashCardSets.fromMap(flashCard)).toList();
 
     // Future<List<FlashCardSets>> retrievePrivateFlashCardSets() {
 
     // }
   }
+
+  // Future<
 }
