@@ -3,6 +3,9 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:flash_card_app/main.dart';
+import 'package:flash_card_app/pages/homepage.dart';
+import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthService {
   //Not yet tested reused from previous project
@@ -10,14 +13,20 @@ class AuthService {
     await supabase.auth.signOut();
   }
 
-// Future<AuthResponse> signInWithUsernameAndPassword(String username, String password) async {
-//   final response = await Supabase.instance.client.auth.signInWith(
-//     email: username,
-//     password: password,
-//   );
-//   return response;
-// }
+  Future<void> checkUser(String email, String password, GlobalKey<FormState> formKey, authProvider, BuildContext context)async {
 
+       if (formKey.currentState!.validate()) {
+      try {
+        await authProvider.login(email, password);
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+    
+      } catch (e) {
+        ScaffoldMessenger.of(formKey.currentContext!).showSnackBar(SnackBar(content: Text('Error: $e')));
+      }
+    }
+  }
   Future<String?> getLoggedInUser() async {
     final session = supabase.auth.currentSession;
     final User = session?.user.id;
