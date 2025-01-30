@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 //!  Colors source:  https://www.b3multimedia.ie/beautiful-color-gradients-for-your-next-design-project/
-// Ocean blue
-const Color oceanBlueStart = Color(0xFF00B686);
-const Color oceanBlueEnd = Color(0xFF1BFFFF);
+//Main theme:
+// Ocean blue theme
+const Color oceanBlueStart = Color(0xFF6448FE);
+const Color oceanBlueEnd = Color(0xFF5FC6FF);
 
 // Sanguine theme
 const Color sanguineStart = Color(0xFFD4145A);
@@ -100,3 +101,18 @@ final LinearGradient socialiveGradient = LinearGradient(
   end: Alignment.bottomRight,
   colors: [socialiveStart, socialiveEnd],
 );
+
+
+final Map<String, LinearGradient> themeGradients = {
+
+   "Ocean Blue": oceanBlueGradient,
+  "Sanguine": sanguineGradient,
+  "Lucious Lime": luciousLimeGradient,
+  "Green Beach": greenBeachGradient,
+  "Mountain Rock": mountainRockGradient,
+  "No Mans": noMansGradient,
+  "Toxic": toxicGradient,
+  "Exotic": exoticGradient,
+  "Cactus": cactusGradient,
+  "Socialive": socialiveGradient,
+};

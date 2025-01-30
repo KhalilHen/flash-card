@@ -1,6 +1,8 @@
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/display_flashcard_sets.dart';
+import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,15 +14,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomepageState extends State<HomePage> {
+  LinearGradient currentGradient = oceanBlueGradient;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
-          Color(0xFF6448FE),
-          Color(0xFF5FC6FF),
-        ])),
+          gradient: currentGradient,
+        ),
         //Safeare to prevent different mobile device having different screen
         child: SafeArea(
             child: Column(
@@ -68,13 +70,28 @@ class _HomepageState extends State<HomePage> {
 
           // TODO Add here a iconbutton to change the   theme style.
           // IconButton(onPressed: () {}, icon: Icon(Icons.circle_)),
-          CircleAvatar(
-            backgroundColor: Colors.white.withAlpha(77),
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.person),
-            ),
-          )
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  customColorPickerDialog();
+                },
+                icon: Icon(Icons.palette),
+                color: Colors.white.withAlpha(77),
+                tooltip: "Change theme",
+                // iconSize: 22,
+                iconSize: 38,
+              ),
+              CircleAvatar(
+                backgroundColor: Colors.white.withAlpha(77),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.person),
+                  tooltip: "View profile",
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -170,6 +187,51 @@ class _HomepageState extends State<HomePage> {
           ],
         ),
       ),
+    );
+  }
+
+//* Create custom color picker.  Existing color picker tool  is not good to use with predfined gradient colors
+  Future<void> customColorPickerDialog() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Pick a theme'),
+          content: SingleChildScrollView(
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              children: themeGradients.entries.map((entry) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      currentGradient = entry.value;
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      gradient: entry.value,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.white, width: 2),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
