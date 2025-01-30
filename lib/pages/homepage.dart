@@ -81,10 +81,10 @@ class _HomepageState extends State<HomePage> {
           //Custom app bar
           // Navigator.push(
           //   context,
-          //   MaterialPageRoute(builder: (context) => DisplayFlashcardSets()),
+          //   MaterialPageRoute(builder: (context) => FlashcardViewer()),
           //   // MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
           // );
-          Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
         },
         child: Icon(Icons.add),
       ),
@@ -181,7 +181,9 @@ class _HomepageState extends State<HomePage> {
                 context,
                 "Public flashcards",
                 Icons.public,
-                () {},
+                () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
+                },
               ),
             ),
             SizedBox(
