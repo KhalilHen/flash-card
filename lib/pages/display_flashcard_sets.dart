@@ -31,9 +31,8 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
               onThemePressed: null,
               onThemePressed2: () {},
             ),
-
-
-            // !! The future builder doesn't work yet.  
+            //TODO Improve this later
+            // !! The future builder doesn't work yet.
             Expanded(
                 child: FutureBuilder<List<FlashCardSets>>(
                     future: flashCardSetController.retrievePublicFlashCardSets(),
@@ -47,7 +46,7 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
                       } else if (snapshot.hasError) {
                         print("Error ${snapshot.error}");
 
-                        //Better error handling for the users of the system. 
+                        //Better error handling for the users of the system.
                         return Center(
                           child: Text("Sorry, something went wrong"),
                         );
