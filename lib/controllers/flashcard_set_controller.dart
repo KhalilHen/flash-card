@@ -25,7 +25,7 @@ class FlashcardSetController {
     );
   }
 
-  Future<List<Map<String, dynamic>>> retrievePublicFlashCardSets() async {
+  Future<List<FlashCardSets>> retrievePublicFlashCardSets() async {
     final response = await supabase.from('flash_card_set').select().eq('status', 'public');
 
     if (response == null || response.isEmpty) {
@@ -33,22 +33,18 @@ class FlashcardSetController {
       return [];
     }
     print(response);
-    return List<Map<String, dynamic>>.from(response);
+    return response.map<FlashCardSets>((flashCard) => FlashCardSets.fromMap(flashCard)).toList();
   }
 
   Future<List<FlashCardSets>> retrieveAllFlashCardSets() async {
     final response = await supabase.from('flash_card_set').select();
     if (response == null || response.isEmpty) {
       print('Failed to retrieve flashcard sets');
+      return [];
     }
     print(response);
 
-    // return List<Map<String, dynamic>>.from(response);
     return response.map<FlashCardSets>((flashCard) => FlashCardSets.fromMap(flashCard)).toList();
-
-    // Future<List<FlashCardSets>> retrievePrivateFlashCardSets() {
-
-    // }
   }
 
   // Future<

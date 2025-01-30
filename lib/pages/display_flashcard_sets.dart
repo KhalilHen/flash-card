@@ -1,5 +1,6 @@
 import 'package:flash_card_app/controllers/flashcard_controller.dart';
 import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
+import 'package:flash_card_app/models/flashcard_sets.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
@@ -30,26 +31,54 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
               onThemePressed: null,
               onThemePressed2: () {},
             ),
+
+
+            // !! The future builder doesn't work yet.  
             Expanded(
-                child: ListView.builder(
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                //TODO Improve it visual later
-                return GestureDetector(
-                  onTap: () {
-                    // To use a flashcard set. Maybe better to use hero not sure yet
-                  },
-                  child: Card(
-                    child: ListTile(
-                      leading: Icon(Icons.book),
-                      title: Text('Flashcard Set ${index + 1}'),
-                      subtitle: Text('Description of Flashcard Set ${index + 1}'),
-                      trailing: Icon(Icons.arrow_forward),
-                    ),
-                  ),
-                );
-              },
-            ))
+                child: FutureBuilder<List<FlashCardSets>>(
+                    future: flashCardSetController.retrievePublicFlashCardSets(),
+                    builder: (context, snapshot) {
+                      print("Data   ${snapshot.data}");
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (snapshot.hasError) {
+                        print("Error ${snapshot.error}");
+
+                        //Better error handling for the users of the system. 
+                        return Center(
+                          child: Text("Sorry, something went wrong"),
+                        );
+                      } else if (snapshot.data == null || snapshot.data!.isEmpty) {
+                        return Center(
+                          child: Text("No Flashcard sets found"),
+                        );
+                      } else {
+                        final flashCardSets = snapshot.data!;
+
+                        return ListView.builder(
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            //TODO Improve it visual later
+                            return GestureDetector(
+                              onTap: () {
+                                // To use a flashcard set. Maybe better to use hero not sure yet
+                              },
+                              child: Card(
+                                child: ListTile(
+                                  leading: Icon(Icons.book),
+                                  title: Text('Flashcard Set ${index + 1}'),
+                                  subtitle: Text('Description of Flashcard Set ${index + 1}'),
+                                  trailing: Icon(Icons.arrow_forward),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }
+                    }))
           ],
         ),
       ),
@@ -60,6 +89,7 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
           // retrieveAllFlashCardSets
           // flashCardController.retrieveEveryPublicFlashCard();
           // flashCardSetController.retrieveAllFlashCardSets();
+          flashCardSetController.retrievePublicFlashCardSets();
         },
         child: Icon(Icons.add),
       ),
