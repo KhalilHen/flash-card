@@ -2,9 +2,11 @@ import 'package:flash_card_app/controllers/flashcard_controller.dart';
 import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
 import 'package:flash_card_app/models/flashcard_model.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
+import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class CreateFlashCard extends StatefulWidget {
   const CreateFlashCard({Key? key}) : super(key: key);
@@ -21,15 +23,17 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
   final flashCardController = FlashcardController();
 
   //TODO Fix witha  notifier that it updates synchron everyw
-  LinearGradient currentGradient = oceanBlueGradient;
+  // LinearGradient currentGradient = oceanBlueGradient;
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       // App bar
       body: Container(
         decoration: BoxDecoration(
-          gradient: currentGradient,
+          gradient: themeProvider.currentGradient,
         ),
         child: SafeArea(
           child: Column(
@@ -115,12 +119,12 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                               labelText: 'Flashcard set',
                               labelStyle: TextStyle(color: Colors.white),
                               enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white.withAlpha(128)),
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: Colors.white.withAlpha(128)),
                               ),
                               focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                              borderSide: BorderSide(color: Colors.white),
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide(color: Colors.white),
                               ),
                               filled: true,
                               fillColor: Colors.white.withAlpha(25),

@@ -2,11 +2,13 @@ import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/display_flashcard_sets.dart';
+import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,10 +22,12 @@ class _HomepageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: currentGradient,
+          gradient: themeProvider.currentGradient,
         ),
         //Safeare to prevent different mobile device having different screen
         child: SafeArea(
@@ -201,6 +205,8 @@ class _HomepageState extends State<HomePage> {
 
 //* Create custom color picker.  Existing color picker tool  is not good to use with predfined gradient colors
   Future<void> customColorPickerDialog() {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -213,9 +219,11 @@ class _HomepageState extends State<HomePage> {
               children: themeGradients.entries.map((entry) {
                 return GestureDetector(
                   onTap: () {
-                    setState(() {
-                      currentGradient = entry.value;
-                    });
+                    // setState(() {
+                    //   currentGradient = entry.value;
+                    // });
+                    themeProvider.updateTheme(entry.value);
+
                     Navigator.of(context).pop();
                   },
                   child: Container(
