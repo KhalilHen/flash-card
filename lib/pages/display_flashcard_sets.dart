@@ -17,7 +17,10 @@ class DisplayFlashcardSets extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // flashCardSetController.retrievePublicFlashCardSets();
-         flashCardController. retrieveEveryPublicFlashCard() ;
+          //  flashCardController. retrieveEveryPublicFlashCard() ;
+          // retrieveAllFlashCardSets
+          // flashCardController.retrieveEveryPublicFlashCard();
+          flashCardSetController.retrieveAllFlashCardSets();
         },
         child: Icon(Icons.add),
       ),

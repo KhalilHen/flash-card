@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FlashcardSetController {
-
-  Future<void> createFlashCardSet(BuildContext context, String title, String status  ) async {
+  Future<void> createFlashCardSet(BuildContext context, String title, String status) async {
     final response = await supabase.from('flash_card_set').insert({
-      'title':  title,
+      'title': title,
       'status': status,
- 
     }).select();
 
     if (response == null || response.isEmpty) {
@@ -34,12 +32,21 @@ class FlashcardSetController {
       print('Failed to retrieve flashcard sets');
       return [];
     }
-  print(response);
+    print(response);
     return List<Map<String, dynamic>>.from(response);
   }
 
-  // Future<List<FlashCardSets>> retrievePrivateFlashCardSets() {
+  Future<List<Map<String, dynamic>>> retrieveAllFlashCardSets() async {
+    final response = await supabase.from('flash_card_set').select();
+    if (response == null || response.isEmpty) {
+      print('Failed to retrieve flashcard sets');
+    }
+    print(response);
 
+    return List<Map<String, dynamic>>.from(response);
 
-  // }
+    // Future<List<FlashCardSets>> retrievePrivateFlashCardSets() {
+
+    // }
+  }
 }
