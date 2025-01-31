@@ -1,6 +1,7 @@
 import 'package:flash_card_app/controllers/flashcard_controller.dart';
 import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
 import 'package:flash_card_app/models/flashcard_sets.dart';
+import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/view_flash_cards.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
@@ -129,16 +130,22 @@ class MyFlashCardSets extends StatelessWidget {
       //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'my flashcards')
       //   ],
       // ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // flashCardSetController.retrievePublicFlashCardSets();
-          //  flashCardController. retrieveEveryPublicFlashCard() ;
-          // retrieveAllFlashCardSets
-          // flashCardController.retrieveEveryPublicFlashCard();
-          // flashCardSetController.retrieveAllFlashCardSets();
-          flashCardSetController.retrievePublicFlashCardSets();
+          Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashcardSet()));
         },
-        child: Icon(Icons.add),
+        backgroundColor: Colors.white,
+        icon: Icon(
+          Icons.add,
+          color: Color(0xFF6448FE),
+        ),
+        label: Text(
+          "Create Set",
+          style: TextStyle(
+            color: Color(0xFF6448FE),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
     );
   }

@@ -46,11 +46,9 @@ class _LoginPageState extends State<LoginPage> {
                 title: "Login",
                 onThemePressed: null,
                 onThemePressed2: null,
-    onThemePressed3: () {
-
-      
-    },
-),              Expanded(
+                onThemePressed3: () {},
+              ),
+              Expanded(
                 child: Center(
                   child: SingleChildScrollView(
                     child: Column(

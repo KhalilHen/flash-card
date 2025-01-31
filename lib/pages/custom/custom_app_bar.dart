@@ -19,7 +19,7 @@ class CustomAppBar extends StatelessWidget {
     this.onThemePressed2,
     this.onThemePressed3,
   }) : super(key: key);
-
+//TODO When using smaller device if there is no space change it in a  drawer
   @override
   Widget build(BuildContext context) {
     return Container(

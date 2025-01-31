@@ -8,10 +8,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class FlashcardSetController {
   final authService = AuthService();
 
-  Future<void> createFlashCardSet(BuildContext context, String title, String status) async {
+  Future<void> createFlashCardSet(BuildContext context, String title, String status, String description) async {
     final response = await supabase.from('flash_card_set').insert({
       'title': title,
       'status': status,
+      'description': description,
     }).select();
 
     if (response == null || response.isEmpty) {
