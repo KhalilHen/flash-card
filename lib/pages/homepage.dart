@@ -74,14 +74,17 @@ class _HomepageState extends State<HomePage> {
                       height: 24,
                     ),
                     ActionsContainer(
+                      title: "Actions",
                       actions: [
                         {
+                          "title": "Public flashcards",
                           "icon": Icons.public,
                           "onTap": () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
                           }
                         },
                         {
+                          "title": "My sets",
                           "icon": Icons.folder,
                           "onTap": () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));

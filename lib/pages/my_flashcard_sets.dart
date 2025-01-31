@@ -1,9 +1,11 @@
 import 'package:flash_card_app/controllers/flashcard_controller.dart';
 import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
 import 'package:flash_card_app/models/flashcard_sets.dart';
+import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/custom/custom_action_container.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
+import 'package:flash_card_app/pages/display_flashcard_sets.dart';
 import 'package:flash_card_app/pages/view_flash_cards.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class MyFlashCardSets extends StatelessWidget {
               onThemePressed2: () {},
             ),
             SizedBox(
-              height: 70,
+              height: 60,
             ),
             Text(
               "Your flashcard sets",
@@ -41,11 +43,24 @@ class MyFlashCardSets extends StatelessWidget {
               height: 50,
             ),
             ActionsContainer(
+              title: "Create  ",
               actions: [
                 {
-                  "icon": Icons.add,
-                  "onpressed": () {
+                  // "title": "Create Flashcard Set",
+                  "title": " Flashcard Set",
+
+                  "icon": Icons.public,
+                  "onTap": () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashcardSet()));
+                  }
+                },
+                {
+                  // "title": "Create flashcards",
+                  "title": " flashcards",
+
+                  "icon": Icons.folder,
+                  "onTap": () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
                   }
                 }
               ],
@@ -53,6 +68,7 @@ class MyFlashCardSets extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
+            // ActionsContainer(),
             Container(),
             Expanded(
                 child: FutureBuilder<List<FlashCardSets>>(

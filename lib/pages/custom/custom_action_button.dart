@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActionButton extends StatelessWidget {
-  // final String title;
+  final String title;
   final IconData icon;
   final VoidCallback onTap;
 
   const ActionButton({
     Key? key,
-    // required this.title,
+    required this.title,
     required this.icon,
     required this.onTap,
   }) : super(key: key);
@@ -36,7 +36,7 @@ class ActionButton extends StatelessWidget {
               height: 12,
             ),
             Text(
-              "Actions",
+              title,
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

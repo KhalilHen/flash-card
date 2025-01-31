@@ -6,9 +6,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ActionsContainer extends StatelessWidget {
 //* Add title string here if using different titles
+  final String title;
   final List<Map<String, dynamic>> actions;
   const ActionsContainer({
     Key? key,
+    required this.title,
     required this.actions,
   }) : super(key: key);
 
@@ -21,7 +23,7 @@ class ActionsContainer extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(left: 25),
           child: Text(
-            "Actions",
+            title,
             style: GoogleFonts.poppins(
               fontSize: 20,
               color: Colors.white,
@@ -34,9 +36,9 @@ class ActionsContainer extends StatelessWidget {
           children: actions.map((action) {
             return Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0), 
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: ActionButton(
-                  // title: action["title"],
+                  title: action["title"],
                   icon: action["icon"],
                   onTap: action["onTap"],
                 ),

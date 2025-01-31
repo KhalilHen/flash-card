@@ -252,6 +252,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(
                                 height: 20,
                               ),
+
+
+                              
                               TextFormField(
                                 obscureText: !isConfirmPasswordVisible,
                                 controller: confirmPasswordController,
