@@ -65,7 +65,15 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
                             return GestureDetector(
                               onTap: () {
                                 // To use a flashcard set. Maybe better to use hero not sure yet
-                                // Navigator.push(context, MaterialPageRoute(builder: (context) => ViewFlashCard(flashCardSet: flashCardSets)));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ViewFlashCard(
+                                      flashcardSet: flashCardSets[index],
+                                    ),
+                                  ),
+                                );
+
 //Not working yet
                               },
                               child: Card(

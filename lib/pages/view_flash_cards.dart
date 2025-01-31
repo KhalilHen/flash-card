@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ViewFlashCard extends StatefulWidget {
-  final FlashCardSets flashcardSet; // Updated parameter name
+  final FlashCardSets flashcardSet;
+
   const ViewFlashCard({
     super.key,
-    required this.flashcardSet, required List flashCardSet,
+    required this.flashcardSet,
   });
 
   @override
@@ -35,10 +36,12 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
               onThemePressed: null,
               onThemePressed2: () {},
             ),
-            // Add more widgets to display flashcards here
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        print("content:" + widget.flashcardSet.title);
+      }),
     );
   }
 }
