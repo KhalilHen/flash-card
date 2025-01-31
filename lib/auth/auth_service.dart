@@ -96,22 +96,24 @@ class AuthService {
         data: {'username': username},
       );
 
-      print(response);
       if (response.user != null) {
         final userId = response.user!.id;
+
+        // Use .insert() method and handle potential errors
         final insertResponse = await supabase.from('person').insert({
           'id': userId,
           'email': email,
           'username': username,
         });
 
-        if (insertResponse.error != null) {
-          throw Exception("database error: ${insertResponse.error!.message}");
-        }
-        print("User created");
+        print("User created successfully");
+        return response;
       }
 
-      return response;
+      return null;
+    } on PostgrestException catch (e) {
+      print("Postgres Error during sign up: ${e.message}");
+      return null;
     } catch (e) {
       print("Error during sign up: $e");
       return null;
