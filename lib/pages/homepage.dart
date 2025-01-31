@@ -4,6 +4,7 @@ import 'package:flash_card_app/pages/create_flashcard_set.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/display_flashcard_sets.dart';
 import 'package:flash_card_app/pages/login.dart';
+import 'package:flash_card_app/pages/my_flashcard_sets.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +193,10 @@ class _HomepageState extends State<HomePage> {
             SizedBox(
               width: 25,
             ),
-            Expanded(child: actionButton(context, "My sets", Icons.folder, () {}))
+            Expanded(
+                child: actionButton(context, "My sets", Icons.folder, () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));
+            }))
           ],
         )
       ],
