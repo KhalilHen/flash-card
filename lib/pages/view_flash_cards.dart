@@ -27,7 +27,7 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
   List<FlashCard> flashCards = [];
   bool showAnswer = false;
   LinearGradient currentGradient = oceanBlueGradient;
-
+  int currentIndex = 0;
   @override
   void initState() {
     super.initState();
@@ -44,6 +44,16 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
     }
     setState(() {
       flashCards = cards;
+    });
+  }
+
+  void nextCard() {
+    setState(() {
+      if (currentIndex < flashCards.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // reset
+      }
     });
   }
 
@@ -65,67 +75,74 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
               onThemePressed2: () {},
             ),
 
+// !When i removed the future builder it gives a split sec errro with the unsude future builder it didn't (note)
             //TODO Make it visual better later
             Expanded(
               child: Center(
-                  child: FutureBuilder<List<FlashCard>>(
-                      // stream: null,
+                child:
+                    // stream: null,
 
-                      future: flashCardController.retrieveFlashCardFromSet(widget.flashcardSet.id),
-                      builder: (context, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (snapshot.hasError) {
-                          print(snapshot.error);
-                          print(snapshot.data);
-
-                          // print(widget.flashcardSet.id);
-                          return Center(
-                            child: Text("Sorry, something went wrong"),
-                          );
-                        } else if (snapshot.data == null || snapshot.data!.isEmpty) {
-                          return Center(
-                            child: Text("No Flashcard found"),
-                          );
-                        } else {
-                          final cards = snapshot.data!;
-                          return Card(
-                            elevation: 8,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            color: Colors.white.withAlpha(230),
-                            //TODO Make it later animation
-                            child: Container(
-                              //Good height/width for Mobile L
-                              width: 300,
-                              height: 300,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    // cards.question,
-                                    // "Question",
-                                    flashCards[0].question,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                    ),
+                    Container(
+                  width: 300,
+                  height: 300,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Card(
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          color: Colors.white.withAlpha(230),
+                          //TODO Make it later animation
+                          child: Container(
+                            //Good height/width for Mobile L
+                            width: 300,
+                            height: 300,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                //TODO Currently when answer is clicked on questioN. And you go next
+                                //TODO It shows the answer of Q2. Add a reset bool later
+                                Text(
+                                  // cards.question,
+                                  // "Question",
+                                  showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 18,
+                                    color: Colors.black,
                                   ),
-
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  //too test if it works
-                                  Text(flashCards[0].answer)
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          );
-                        }
-                      })),
+                          ),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                showAnswer = !showAnswer;
+                              });
+                            },
+                            child: Text("Show answer"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              nextCard();
+                            },
+                            child: Text("Next question"),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
             SizedBox(
               height: 20,
@@ -143,11 +160,6 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        // print("content:" + widget.flashcardSet.title);
-
-        flashCardController.retrieveFlashCardFromSet(widget.flashcardSet.id);
-      }),
     );
   }
 }
