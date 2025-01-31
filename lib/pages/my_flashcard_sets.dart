@@ -2,6 +2,7 @@ import 'package:flash_card_app/controllers/flashcard_controller.dart';
 import 'package:flash_card_app/controllers/flashcard_set_controller.dart';
 import 'package:flash_card_app/models/flashcard_sets.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
+import 'package:flash_card_app/pages/custom/custom_action_container.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/view_flash_cards.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
@@ -39,7 +40,19 @@ class MyFlashCardSets extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            Text("Actions"),
+            ActionsContainer(
+              actions: [
+                {
+                  "icon": Icons.add,
+                  "onpressed": () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashcardSet()));
+                  }
+                }
+              ],
+            ),
+            SizedBox(
+              height: 50,
+            ),
             Container(),
             Expanded(
                 child: FutureBuilder<List<FlashCardSets>>(
@@ -156,15 +169,15 @@ class MyFlashCardSets extends StatelessWidget {
 //       crossAxisAlignment: CrossAxisAlignment.start,
 //       mainAxisAlignment: MainAxisAlignment.start,
 //       children: [
-//         Padding(padding: EdgeInsets.only(left: 25) , child: Text("Actions", style: GoogleFonts.poppins(fontSize: 
+//         Padding(padding: EdgeInsets.only(left: 25) , child: Text("Actions", style: GoogleFonts.poppins(fontSize:
 //         20, color: Colors.white,  fontWeight: FontWeight.bold),),)
 // ,
 //         SizedBox(height: 30,),
 
 //         Row(
 //           children: [
-//             Expanded(child: 
-            
+//             Expanded(child:
+
 //             )
 //           ],
 //         )

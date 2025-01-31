@@ -33,10 +33,13 @@ class ActionsContainer extends StatelessWidget {
         Row(
           children: actions.map((action) {
             return Expanded(
-              child: ActionButton(
-                title: action["title"],
-                icon: action["icon"],
-                onPressed: action["onTap"],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0), 
+                child: ActionButton(
+                  // title: action["title"],
+                  icon: action["icon"],
+                  onTap: action["onTap"],
+                ),
               ),
             );
           }).toList(),

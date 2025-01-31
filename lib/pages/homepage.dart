@@ -77,13 +77,13 @@ class _HomepageState extends State<HomePage> {
                       actions: [
                         {
                           "icon": Icons.public,
-                          "onpressed": () {
+                          "onTap": () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
                           }
                         },
                         {
                           "icon": Icons.folder,
-                          "onpressed": () {
+                          "onTap": () {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));
                           }
                         }

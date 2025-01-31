@@ -1,30 +1,22 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ActionButton extends StatelessWidget {
-  final String title;
+  // final String title;
   final IconData icon;
-  final VoidCallback onPressed;
+  final VoidCallback onTap;
 
   const ActionButton({
-
-
     Key? key,
-    required this.title,
+    // required this.title,
     required this.icon,
-    required this.onPressed,
+    required this.onTap,
   }) : super(key: key);
 
-
-  @override 
-
-
+  @override
   Widget build(BuildContext context) {
-
-  return GestureDetector(
-      onTap: onPressed,
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -44,7 +36,7 @@ class ActionButton extends StatelessWidget {
               height: 12,
             ),
             Text(
-              title,
+              "Actions",
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
