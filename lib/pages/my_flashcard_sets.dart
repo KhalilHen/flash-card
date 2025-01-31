@@ -29,15 +29,18 @@ class MyFlashCardSets extends StatelessWidget {
               onThemePressed: null,
               onThemePressed2: () {},
             ),
-
+            SizedBox(
+              height: 70,
+            ),
             Text(
               "Your flashcard sets",
               style: GoogleFonts.poppins(fontSize: 28, color: Colors.white),
             ),
-
             SizedBox(
-              height: 30,
+              height: 50,
             ),
+            Text("Actions"),
+            Container(),
             Expanded(
                 child: FutureBuilder<List<FlashCardSets>>(
                     future: flashCardSetController.retrieverUserFlashCardSets(context),
@@ -67,7 +70,6 @@ class MyFlashCardSets extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -147,4 +149,26 @@ class MyFlashCardSets extends StatelessWidget {
       ),
     );
   }
+
+//   Widget actionsContainer(BuildContext context) {
+//     return Column(
+
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       mainAxisAlignment: MainAxisAlignment.start,
+//       children: [
+//         Padding(padding: EdgeInsets.only(left: 25) , child: Text("Actions", style: GoogleFonts.poppins(fontSize: 
+//         20, color: Colors.white,  fontWeight: FontWeight.bold),),)
+// ,
+//         SizedBox(height: 30,),
+
+//         Row(
+//           children: [
+//             Expanded(child: 
+            
+//             )
+//           ],
+//         )
+//       ],
+//     );
+//   }
 }

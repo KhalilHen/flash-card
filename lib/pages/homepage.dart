@@ -1,6 +1,7 @@
 import 'package:flash_card_app/auth/auth_service.dart';
 import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/create_flashcard_set.dart';
+import 'package:flash_card_app/pages/custom/custom_action_container.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
 import 'package:flash_card_app/pages/display_flashcard_sets.dart';
 import 'package:flash_card_app/pages/login.dart';
@@ -72,7 +73,22 @@ class _HomepageState extends State<HomePage> {
                     SizedBox(
                       height: 24,
                     ),
-                    actionsContainer(context),
+                    ActionsContainer(
+                      actions: [
+                        {
+                          "icon": Icons.public,
+                          "onpressed": () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
+                          }
+                        },
+                        {
+                          "icon": Icons.folder,
+                          "onpressed": () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));
+                          }
+                        }
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -169,79 +185,81 @@ class _HomepageState extends State<HomePage> {
               ));
   }
 
-  Widget actionsContainer(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        //* Maby change this into "Quik actions" not sure yet
-        Text("Actions", style: GoogleFonts.poppins(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-        SizedBox(
-          height: 30,
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: actionButton(
-                context,
-                "Public flashcards",
-                Icons.public,
-                () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
-                },
-              ),
-            ),
-            SizedBox(
-              width: 25,
-            ),
-            Expanded(
-                child: actionButton(context, "My sets", Icons.folder, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));
-            }))
-          ],
-        )
-      ],
-    );
-  }
+  // Widget actionsContainer(BuildContext context) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     mainAxisAlignment: MainAxisAlignment.start,
+  //     children: [
+  //       //* Maby change this into "Quik actions" not sure yet
 
-  Widget actionButton(
-    BuildContext context,
-    String title,
-    IconData icon,
-    VoidCallback ontap,
-  ) {
-    return GestureDetector(
-      onTap: ontap,
-      child: Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-            // color: Colors.white,
-            color: Colors.grey[100], //giving bit of grey tint
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 10, offset: Offset(0, 4))]),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              icon,
-              size: 32,
-              color: Color(0xFF6448FE),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Text(
-              title,
-              style: GoogleFonts.poppins(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Color(0xFF6448FE),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
+  //       Padding(padding: EdgeInsets.only(left: 25), child: Text("Actions", style: GoogleFonts.poppins(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold))),
+  //       SizedBox(
+  //         height: 30,
+  //       ),
+  //       Row(
+  //         children: [
+  //           Expanded(
+  //             child: actionButton(
+  //               context,
+  //               "Public flashcards",
+  //               Icons.public,
+  //               () {
+  //                 Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayFlashcardSets()));
+  //               },
+  //             ),
+  //           ),
+  //           SizedBox(
+  //             width: 25,
+  //           ),
+  //           Expanded(
+  //               child: actionButton(context, "My sets", Icons.folder, () {
+  //             Navigator.push(context, MaterialPageRoute(builder: (context) => MyFlashCardSets()));
+  //           }))
+  //         ],
+  //       )
+  //     ],
+  //   );
+  // }
+
+  // Widget actionButton(
+  //   BuildContext context,
+  //   String title,
+  //   IconData icon,
+  //   VoidCallback ontap,
+  // ) {
+  //   return GestureDetector(
+  //     onTap: ontap,
+  //     child: Container(
+  //       padding: EdgeInsets.all(16),
+  //       decoration: BoxDecoration(
+  //           // color: Colors.white,
+  //           color: Colors.grey[100], //giving bit of grey tint
+  //           borderRadius: BorderRadius.circular(16),
+  //           boxShadow: [BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 10, offset: Offset(0, 4))]),
+  //       child: Column(
+  //         mainAxisSize: MainAxisSize.min,
+  //         children: [
+  //           Icon(
+  //             icon,
+  //             size: 32,
+  //             color: Color(0xFF6448FE),
+  //           ),
+  //           SizedBox(
+  //             height: 12,
+  //           ),
+  //           Text(
+  //             title,
+  //             style: GoogleFonts.poppins(
+  //               fontSize: 16,
+  //               fontWeight: FontWeight.w600,
+  //               color: Color(0xFF6448FE),
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     ),
+  //   );
+  // }
 
 //* Create custom color picker.  Existing color picker tool  is not good to use with predfined gradient colors
   Future<void> customColorPickerDialog() {
