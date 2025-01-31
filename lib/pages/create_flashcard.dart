@@ -199,12 +199,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
         ),
       ),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
-          flashCardSetController.retrieveAllFlashCardSets();
-        },
-      ),
+     
     );
   }
 }

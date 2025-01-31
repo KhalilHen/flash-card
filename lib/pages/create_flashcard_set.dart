@@ -195,10 +195,7 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        flashcardSetController.retrieverUserFlashCardSets(context);
-        print("Fetching flashcard sets ");
-      }),
+    
     );
   }
 }

@@ -20,8 +20,9 @@ class ActionButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16),
         decoration: BoxDecoration(
+            color: Colors.white.withAlpha(38),
             // color: Colors.white,
-            color: Colors.grey[100], //giving bit of grey tint
+            // color: Colors.grey[100], //giving bit of grey tint
             borderRadius: BorderRadius.circular(16),
             boxShadow: [BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 10, offset: Offset(0, 4))]),
         child: Column(
@@ -30,7 +31,8 @@ class ActionButton extends StatelessWidget {
             Icon(
               icon,
               size: 32,
-              color: Color(0xFF6448FE),
+              // color: Color(0xFF6448FE),
+              color: Colors.white,
             ),
             SizedBox(
               height: 12,
@@ -40,7 +42,8 @@ class ActionButton extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF6448FE),
+                // color: Color(0xFF6448FE),
+                color: Colors.white,
               ),
             )
           ],

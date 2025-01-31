@@ -99,18 +99,7 @@ class _HomepageState extends State<HomePage> {
           ],
         )),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          //Custom app bar
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => FlashcardViewer()),
-          //   // MaterialPageRoute(builder: (context) => CreateFlashcardSet()),
-          // );
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-        },
-        child: Icon(Icons.add),
-      ),
+  
     );
   }
 

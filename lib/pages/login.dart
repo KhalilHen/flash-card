@@ -191,9 +191,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
-      }),
+   
     );
   }
 }

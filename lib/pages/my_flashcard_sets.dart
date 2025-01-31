@@ -119,7 +119,7 @@ class MyFlashCardSets extends StatelessWidget {
                                 subtitle: Text(
                                   // flashCardSets[index].descruotuib ?? "Description",
                                   flashCardSets[index].description ?? "Description",
-                              
+
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                 ),

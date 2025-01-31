@@ -192,6 +192,11 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                                       children: [
                                         Text(
                                           !isFlipping ? flashCards[currentIndex].answer : '',
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                         // isFlipping == true
                                         //     ? Text(

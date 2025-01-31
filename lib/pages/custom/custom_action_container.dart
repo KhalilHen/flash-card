@@ -48,5 +48,45 @@ class ActionsContainer extends StatelessWidget {
         ),
       ],
     );
+
+    // return Container(
+    //   padding: EdgeInsets.all(20),
+    //   decoration: BoxDecoration(
+    //     color: Colors.white.withAlpha(38),
+    //     borderRadius: BorderRadius.circular(20),
+    //   ),
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       Padding(
+    //         padding: EdgeInsets.only(left: 25),
+    //         child: Text(
+    //           title,
+    //           style: GoogleFonts.poppins(
+    //             fontSize: 20,
+    //             color: Colors.white,
+    //             fontWeight: FontWeight.bold,
+    //           ),
+    //         ),
+    //       ),
+    //       SizedBox(height: 30),
+    //       Row(
+    //         children: actions.map((action) {
+    //           return Expanded(
+    //             child: Padding(
+    //               padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    //               child: ActionButton(
+    //                 title: action["title"],
+    //                 icon: action["icon"],
+    //                 onTap: action["onTap"],
+    //               ),
+    //             ),
+    //           );
+    //         }).toList(),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }
