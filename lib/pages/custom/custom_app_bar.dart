@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flash_card_app/pages/homepage.dart';
 
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+// import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -13,12 +13,12 @@ class CustomAppBar extends StatelessWidget {
   final VoidCallback? onThemePressed2;
   final VoidCallback? onThemePressed3;
   const CustomAppBar({
-    Key? key,
+    super.key,
     required this.title,
     this.onThemePressed,
     this.onThemePressed2,
     this.onThemePressed3,
-  }) : super(key: key);
+  });
 //TODO When using smaller device if there is no space change it in a  drawer
   @override
   Widget build(BuildContext context) {
@@ -74,11 +74,11 @@ class CustomAppBar extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.white.withAlpha(77),
                       child: IconButton(
-                        onPressed: onThemePressed2, // Use the provided callback
+                        onPressed: onThemePressed2,
                         icon: Icon(Icons.person),
                         tooltip: "View profile",
                       ),
-                    )
+                    ),
                   ],
                 ),
 
