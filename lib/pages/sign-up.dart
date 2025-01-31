@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             children: [
                               Text(
-                                "Welcome Sign-up!",
+                                "Welcome Sign up!",
                                 style: GoogleFonts.poppins(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
@@ -152,144 +152,153 @@ class _SignUpPageState extends State<SignUpPage> {
                               SizedBox(
                                 height: 40,
                               ),
-                              TextFormField(
-                                controller: usernameController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.person),
-                                  labelText: 'username',
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  suffixIcon: isNameAvaible == null
-                                      ? null
-                                      : isNameAvaible!
-                                          ? const Icon(Icons.check, color: Colors.green)
-                                          : const Icon(Icons.error, color: Colors.red),
-                                  contentPadding: EdgeInsets.all(16),
-                                ),
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  labelText: 'email',
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  suffixIcon: isEmailAvailable == null
-                                      ? null
-                                      : isEmailAvailable!
-                                          ? const Icon(Icons.check, color: Colors.green)
-                                          : const Icon(Icons.error, color: Colors.red),
-                                  contentPadding: EdgeInsets.all(16),
-                                ),
-                                autovalidateMode: AutovalidateMode.onUserInteraction,
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  } else if (!value.contains('@') || !value.contains('.')) {
-                                    return 'Please enter a valid email';
-                                  }
-                                  return null;
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                obscureText: !isPasswordVisible,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock_outline),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  controller: usernameController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.person),
+                                    labelText: 'username',
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        isPasswordVisible = !isPasswordVisible;
-                                      });
-                                    },
+                                    suffixIcon: isNameAvaible == null
+                                        ? null
+                                        : isNameAvaible!
+                                            ? const Icon(Icons.check, color: Colors.green)
+                                            : const Icon(Icons.error, color: Colors.red),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  labelText: 'Password',
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password ';
-                                  }
-                                  return null;
-                                },
                               ),
                               SizedBox(
                                 height: 20,
                               ),
-
-
-                              
-                              TextFormField(
-                                obscureText: !isConfirmPasswordVisible,
-                                controller: confirmPasswordController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock_outline),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      isConfirmPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.email_outlined),
+                                    labelText: 'email',
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        isConfirmPasswordVisible = !isConfirmPasswordVisible;
-                                      });
-                                    },
+                                    suffixIcon: isEmailAvailable == null
+                                        ? null
+                                        : isEmailAvailable!
+                                            ? const Icon(Icons.check, color: Colors.green)
+                                            : const Icon(Icons.error, color: Colors.red),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  labelText: 'Confirm password',
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter some text';
+                                    } else if (!value.contains('@') || !value.contains('.')) {
+                                      return 'Please enter a valid email';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password here ';
-                                  }
-                                  if (value != passwordController.text) {
-                                    return 'Passwords are not the same';
-                                  }
-                                  return null;
-                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  obscureText: !isPasswordVisible,
+                                  controller: passwordController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          isPasswordVisible = !isPasswordVisible;
+                                        });
+                                      },
+                                    ),
+                                    labelText: 'Password',
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your password ';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  obscureText: !isConfirmPasswordVisible,
+                                  controller: confirmPasswordController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        isConfirmPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                                        });
+                                      },
+                                    ),
+                                    labelText: 'Confirm password',
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
+                                  ),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your password here ';
+                                    }
+                                    if (value != passwordController.text) {
+                                      return 'Passwords are not the same';
+                                    }
+                                    return null;
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 32,
@@ -317,7 +326,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                                 ),
                                 child: Text(
-                                  "Login",
+                                  "Sign up!",
                                   style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
                                 ),
                               ),

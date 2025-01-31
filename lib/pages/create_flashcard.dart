@@ -21,9 +21,20 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
   final questionController = TextEditingController();
   final answerController = TextEditingController();
   final flashCardController = FlashcardController();
+  List<String> flashCardSetTitles = [];
 
-  //TODO Fix witha  notifier that it updates synchron everyw
-  // LinearGradient currentGradient = oceanBlueGradient;
+  @override
+  void initState() {
+    super.initState();
+    fetchFlashCardSetTitles();
+  }
+
+  Future<void> fetchFlashCardSetTitles() async {
+    final sets = await flashCardSetController.retrieveAllFlashCardSets();
+    setState(() {
+      flashCardSetTitles = sets.map((set) => set.title).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,86 +69,101 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                           SizedBox(
                             height: 24,
                           ),
-                          TextFormField(
-                            // maxLines: 3,
-                            // maxLines: 2,
-                            controller: questionController,
-                            decoration: InputDecoration(
-                              labelText: 'Question',
-                              hintText: "How many stripes has a zebra",
-                              hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                              filled: true,
-                              fillColor: Colors.white.withAlpha(51),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: TextFormField(
+                              // maxLines: 3,
+                              // maxLines: 2,
+                              controller: questionController,
+                              decoration: InputDecoration(
+                                labelText: 'Question',
+                                hintText: "How many stripes has a zebra",
+                                hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                filled: true,
+                                prefixIcon: Icon(
+                                  Icons.quiz,
+                                ),
+                                fillColor: Colors.white.withAlpha(51),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: EdgeInsets.all(16),
                               ),
-                              contentPadding: EdgeInsets.all(16),
+                              style: TextStyle(color: Colors.white),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
                             ),
-                            style: TextStyle(color: Colors.white),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
                           ),
                           SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            maxLines: 3,
-                            controller: answerController,
-                            decoration: InputDecoration(
-                              labelText: 'Anwser',
-                              hintText: "Too much",
-                              hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                              filled: true,
-                              fillColor: Colors.white.withAlpha(51),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: TextFormField(
+                              maxLines: 3,
+                              controller: answerController,
+                              decoration: InputDecoration(
+                                labelText: 'Anwser',
+                                hintText: "Too much",
+                                prefixIcon: Icon(Icons.check_circle_outline),
+                                hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                filled: true,
+                                fillColor: Colors.white.withAlpha(51),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide.none,
+                                ),
+                                contentPadding: EdgeInsets.all(16),
                               ),
-                              contentPadding: EdgeInsets.all(16),
+                              style: TextStyle(color: Colors.white),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                                return null;
+                              },
                             ),
-                            style: TextStyle(color: Colors.white),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
                           ),
+
+                          // !! Future answer description
 
                           SizedBox(
                             height: 20,
                           ),
                           // //TODO Improve later the pop-up inside the dropdown
-                          DropdownButtonFormField<String>(
-                            dropdownColor: Colors.white.withAlpha(230),
-                            decoration: InputDecoration(
-                              labelText: 'Flashcard set',
-                              labelStyle: TextStyle(color: Colors.white),
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(color: Colors.white.withAlpha(128)),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: DropdownButtonFormField<String>(
+                              dropdownColor: Colors.white.withAlpha(230),
+                              decoration: InputDecoration(
+                                labelText: 'Flashcard set',
+                                labelStyle: TextStyle(color: Colors.white),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(color: Colors.white.withAlpha(128)),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                  borderSide: BorderSide(color: Colors.white),
+                                ),
+                                filled: true,
+                                fillColor: Colors.white.withAlpha(25),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              filled: true,
-                              fillColor: Colors.white.withAlpha(25),
+                              style: TextStyle(color: Colors.white),
+                              icon: Icon(Icons.arrow_drop_down, color: Colors.white),
+                              items: flashCardSetTitles.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value, style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500)),
+                                );
+                              }).toList(),
+                              onChanged: (value) {},
                             ),
-                            style: TextStyle(color: Colors.white),
-                            icon: Icon(Icons.arrow_drop_down, color: Colors.white),
-                            items: ['Math', 'Science', 'History', 'Language'].map((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value, style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w500)),
-                              );
-                            }).toList(),
-                            onChanged: (value) {},
                           ),
 
                           // ! In future another formfield option to adda  false answer

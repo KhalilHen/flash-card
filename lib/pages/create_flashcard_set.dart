@@ -27,6 +27,17 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    fetchFlashCardUserSet();
+  }
+
+  void fetchFlashCardUserSet() async {
+    flashcardSetController.retrieverUserFlashCardSets(context);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
@@ -66,90 +77,98 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                               SizedBox(
                                 height: 40,
                               ),
-                              TextFormField(
-                                controller: titleController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  labelText: 'Title',
-                                  hintText: "History",
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  controller: titleController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.title),
+                                    labelText: 'Title',
+                                    hintText: "History",
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
                               ),
                               SizedBox(
                                 height: 20,
                               ),
 
-                              TextFormField(
-                                controller: descriptionController,
-                                decoration: InputDecoration(
-                                  // prefixIcon: const Icon(Icons.email_outlined),
-                                  labelText: 'Description',
-                                  hintText: "This is a set about history",
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                                child: TextFormField(
+                                  controller: descriptionController,
+                                  decoration: InputDecoration(
+                                    // prefixIcon: const Icon(Icons.email_outlined),
+                                    labelText: 'Description',
+                                    hintText: "This is a set about history",
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    prefixIcon: Icon(Icons.description),
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter some text';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  }
-                                  return null;
-                                },
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               //* This can improve later
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: isPublic,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        isPublic = value ?? false;
-                                      });
-                                    },
-                                    activeColor: Colors.white,
-                                    checkColor: Colors.black,
-                                  ),
-                                  SizedBox(width: 8),
-                                  Text(
-                                    'Make this set public',
-                                    style: GoogleFonts.poppins(color: Colors.white),
-                                  ),
-                                ],
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 7.0),
+                                child: Row(
+                                  children: [
+                                    Checkbox(
+                                      value: isPublic,
+                                      onChanged: (bool? value) {
+                                        setState(() {
+                                          isPublic = value ?? false;
+                                        });
+                                      },
+                                      activeColor: Colors.white,
+                                      checkColor: Colors.black,
+                                    ),
+                                    SizedBox(width: 8),
+                                    Text(
+                                      'Make this set public',
+                                      style: GoogleFonts.poppins(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
                               SizedBox(
                                 height: 32,
                               ),
                               ElevatedButton(
                                 onPressed: () {
-
-     if (formKey.currentState!.validate()) {
-                      String status = isPublic ? "public" : "private";
-                      flashcardSetController.createFlashCardSet(context, titleController.text, status , descriptionController.text );
-                    }
-                
+                                  if (formKey.currentState!.validate()) {
+                                    String status = isPublic ? "public" : "private";
+                                    flashcardSetController.createFlashCardSet(context, titleController.text, status, descriptionController.text);
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
@@ -157,7 +176,7 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                                 ),
                                 child: Text(
-                                  "Login",
+                                  "Create",
                                   style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
                                 ),
                               ),
@@ -176,6 +195,10 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        flashcardSetController.retrieverUserFlashCardSets(context);
+        print("Fetching flashcard sets ");
+      }),
     );
   }
 }

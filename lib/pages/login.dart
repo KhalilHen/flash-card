@@ -70,66 +70,74 @@ class _LoginPageState extends State<LoginPage> {
                               SizedBox(
                                 height: 40,
                               ),
-                              TextFormField(
-                                controller: emailController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  labelText: 'Email',
-                                  hintText: "test@hotmail.com",
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+
+                                child: TextFormField(
+                                  controller: emailController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.email_outlined),
+                                    labelText: 'Email',
+                                    hintText: "test@hotmail.com",
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter some text';
+                                    } else if (!value.contains('@') || !value.contains('.')) {
+                                      return 'Please enter a valid email';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter some text';
-                                  } else if (!value.contains('@') || !value.contains('.')) {
-                                    return 'Please enter a valid email';
-                                  }
-                                  return null;
-                                },
                               ),
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                obscureText: !isPasswordVisible,
-                                controller: passwordController,
-                                decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.lock_outline),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+
+                                child: TextFormField(
+                                  obscureText: !isPasswordVisible,
+                                  controller: passwordController,
+                                  decoration: InputDecoration(
+                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                        isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                      ),
+                                      onPressed: () {
+                                        setState(() {
+                                          isPasswordVisible = !isPasswordVisible;
+                                        });
+                                      },
                                     ),
-                                    onPressed: () {
-                                      setState(() {
-                                        isPasswordVisible = !isPasswordVisible;
-                                      });
-                                    },
+                                    labelText: 'Password',
+                                    hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                    filled: true,
+                                    fillColor: Colors.white.withAlpha(51),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                      borderSide: BorderSide.none,
+                                    ),
+                                    contentPadding: EdgeInsets.all(16),
                                   ),
-                                  labelText: 'Password',
-                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
-                                  filled: true,
-                                  fillColor: Colors.white.withAlpha(51),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                    borderSide: BorderSide.none,
-                                  ),
-                                  contentPadding: EdgeInsets.all(16),
+                                  style: TextStyle(color: Colors.white),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your password ';
+                                    }
+                                    return null;
+                                  },
                                 ),
-                                style: TextStyle(color: Colors.white),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please enter your password ';
-                                  }
-                                  return null;
-                                },
                               ),
                               SizedBox(
                                 height: 32,

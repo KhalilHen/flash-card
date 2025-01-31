@@ -49,7 +49,7 @@ class MyFlashCardSets extends StatelessWidget {
                   // "title": "Create Flashcard Set",
                   "title": " Flashcard Set",
 
-                  "icon": Icons.public,
+                  "icon": Icons.library_add,
                   "onTap": () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashcardSet()));
                   }
@@ -58,7 +58,7 @@ class MyFlashCardSets extends StatelessWidget {
                   // "title": "Create flashcards",
                   "title": " flashcards",
 
-                  "icon": Icons.folder,
+                  "icon": Icons.create,
                   "onTap": () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashCard()));
                   }
@@ -110,22 +110,20 @@ class MyFlashCardSets extends StatelessWidget {
 
 //Not working yet
                               },
-                              child: Card(
-                                child: ListTile(
-                                  leading: Icon(Icons.book),
-                                  title: Text(
-                                    flashCardSets[index].title ?? "Title",
-                                    style: GoogleFonts.poppins(),
-                                  ),
-                                  subtitle: Text(
-                                    // flashCardSets[index].descruotuib ?? "Description",
-                                    flashCardSets[index].description ?? "Description",
-
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                  ),
-                                  trailing: Icon(Icons.arrow_forward),
+                              child: ListTile(
+                                leading: Icon(Icons.book),
+                                title: Text(
+                                  flashCardSets[index].title ?? "Title",
+                                  style: GoogleFonts.poppins(),
                                 ),
+                                subtitle: Text(
+                                  // flashCardSets[index].descruotuib ?? "Description",
+                                  flashCardSets[index].description ?? "Description",
+                              
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 2,
+                                ),
+                                trailing: Icon(Icons.arrow_forward),
                               ),
                             );
                           },

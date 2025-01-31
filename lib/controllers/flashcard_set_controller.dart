@@ -83,6 +83,7 @@ class FlashcardSetController {
         print('Failed to retrieve flashcard sets');
         return [];
       } else {
+        print(response);
         return response.map<FlashCardSets>((flashCard) => FlashCardSets.fromMap(flashCard)).toList();
       }
     }
