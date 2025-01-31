@@ -1,3 +1,4 @@
+import 'package:flash_card_app/pages/login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
@@ -10,11 +11,13 @@ class CustomAppBar extends StatelessWidget {
   final String title;
   final VoidCallback? onThemePressed;
   final VoidCallback? onThemePressed2;
+  final VoidCallback? onThemePressed3;
   const CustomAppBar({
     Key? key,
     required this.title,
     this.onThemePressed,
     this.onThemePressed2,
+    this.onThemePressed3,
   }) : super(key: key);
 
   @override
@@ -33,13 +36,31 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
           onThemePressed == null
-              ? CircleAvatar(
-                  backgroundColor: Colors.white.withAlpha(77),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.person),
-                    tooltip: "View profile",
-                  ),
+              ? Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                      },
+                      icon: const Icon(Icons.home),
+                      color: Colors.white.withAlpha(77),
+                      tooltip: "Go to homepage",
+                      iconSize: 38,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Colors.white.withAlpha(77),
+                      child: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                        },
+                        icon: Icon(Icons.person),
+                        tooltip: "View profile",
+                      ),
+                    ),
+                  ],
                 )
               : Row(
                   children: [
@@ -53,13 +74,17 @@ class CustomAppBar extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.white.withAlpha(77),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: onThemePressed2, // Use the provided callback
                         icon: Icon(Icons.person),
                         tooltip: "View profile",
                       ),
                     )
                   ],
-                )
+                ),
+
+          //  onThemePressed == null && onThemePressed3 != null ?
+
+          // :
 
 // }
 //            else {

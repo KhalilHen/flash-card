@@ -46,8 +46,11 @@ class _LoginPageState extends State<LoginPage> {
                 title: "Login",
                 onThemePressed: null,
                 onThemePressed2: null,
-              ),
-              Expanded(
+    onThemePressed3: () {
+
+      
+    },
+),              Expanded(
                 child: Center(
                   child: SingleChildScrollView(
                     child: Column(
@@ -159,7 +162,6 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                   TextButton(
                                       onPressed: () {
-
                                         Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                                       },
                                       child: Text(

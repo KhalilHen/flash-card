@@ -57,6 +57,9 @@ class _HomepageState extends State<HomePage> {
               onThemePressed: () {
                 customColorPickerDialog();
               },
+              onThemePressed2: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              },
             ),
             // SizedBox(height: 24,),
             Expanded(
