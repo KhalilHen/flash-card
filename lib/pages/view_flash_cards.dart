@@ -77,76 +77,178 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
 
 // !When i removed the future builder it gives a split sec errro with the unsude future builder it didn't (note)
             //TODO Make it visual better later
-            Expanded(
-              child: Center(
-                child:
-                    // stream: null,
+            flashCards.isEmpty
+                ?
+                //  return Center(
+                //     child: CircularProgressIndicator(),
+                //   )
+                Center(
+                    child: Text("No flashcards found"),
+                  )
+                : Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(left: 25),
+                          height: 300,
+                          width: 300,
 
-                    Container(
-                  width: 300,
-                  height: 300,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Card(
-                          elevation: 8,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withAlpha(38),
+                            borderRadius: BorderRadius.circular(20),
                           ),
-                          color: Colors.white.withAlpha(230),
-                          //TODO Make it later animation
-                          child: Container(
-                            //Good height/width for Mobile L
-                            width: 300,
-                            height: 300,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                //TODO Currently when answer is clicked on questioN. And you go next
-                                //TODO It shows the answer of Q2. Add a reset bool later
-                                Text(
-                                  // cards.question,
-                                  // "Question",
-                                  showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 18,
-                                    color: Colors.black,
+                          child: Column(
+                            children: [
+                              Expanded(
+                                  child: Container(
+                                padding: EdgeInsets.all(24),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                        style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
+                              )),
+                            ],
                           ),
+                          // child: FlipCard(),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                showAnswer = !showAnswer;
-                              });
-                            },
-                            child: Text("Show answer"),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              nextCard();
-                            },
-                            child: Text("Next question"),
-                          ),
-                        ],
-                      )
-                    ],
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  showAnswer = !showAnswer;
+                                });
+                              },
+                              child: Text(
+                                "Show answer",
+                                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                nextCard();
+                              },
+                              child: Text(
+                                "Next ",
+                                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+
+            // : Expanded(
+            //     child: Center(
+            //       child:
+            //           // stream: null,
+
+            //           Container(
+
+            //         width: 300,
+            //         height: 300,
+            //         child: Column(
+            //           children: [
+            //             Expanded(
+            //               child: Card(
+            //                 // decoration: BoxDecoration(),
+            //                 elevation: 8,
+            //                 shape: RoundedRectangleBorder(
+            //                   borderRadius: BorderRadius.circular(16),
+            //                 ),
+            //                 color: Colors.white.withAlpha(230),
+            //                 //TODO Make it later animation
+            //                 child: Container(
+            //                   //Good height/width for Mobile L
+            //                   width: 300,
+            //                   height: 300,
+            //                   child: Column(
+            //                     mainAxisAlignment: MainAxisAlignment.center,
+            //                     children: [
+            //                       SizedBox(
+            //                         height: 20,
+            //                       ),
+            //                       //TODO Currently when answer is clicked on questioN. And you go next
+            //                       //TODO It shows the answer of Q2. Add a reset bool later
+            //                       Text(
+            //                         // cards.question,
+            //                         // "Question",
+            //                         showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+            //                         style: GoogleFonts.poppins(
+            //                           fontSize: 18,
+            //                           color: Colors.black,
+            //                         ),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //             Row(
+            //               children: [
+            //                 ElevatedButton(
+            //                   onPressed: () {
+            //                     setState(() {
+            //                       showAnswer = !showAnswer;
+            //                     });
+            //                   },
+            //                   child: Text("Show answer"),
+            //                 ),
+            //                 SizedBox(
+            //                   width: 20,
+            //                 ),
+            //                 ElevatedButton(
+            //                   onPressed: () {
+            //                     nextCard();
+            //                   },
+            //                   child: Text("Next question"),
+            //                 ),
+            //               ],
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // SizedBox(
+            //   height: 20,
+            // ),
 
             // Row(
             //   children: [

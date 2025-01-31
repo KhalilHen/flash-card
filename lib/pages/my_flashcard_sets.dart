@@ -29,8 +29,6 @@ class MyFlashCardSets extends StatelessWidget {
               onThemePressed: null,
               onThemePressed2: () {},
             ),
-            //TODO Improve this later
-            // !! The future builder doesn't work yet.
 
             Text(
               "Your flashcard sets",
@@ -69,7 +67,7 @@ class MyFlashCardSets extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                // To use a flashcard set. Maybe better to use hero not sure yet
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(

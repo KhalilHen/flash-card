@@ -122,17 +122,6 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
       //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'my flashcards')
       //   ],
       // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // flashCardSetController.retrievePublicFlashCardSets();
-          //  flashCardController. retrieveEveryPublicFlashCard() ;
-          // retrieveAllFlashCardSets
-          // flashCardController.retrieveEveryPublicFlashCard();
-          // flashCardSetController.retrieveAllFlashCardSets();
-          flashCardSetController.retrievePublicFlashCardSets();
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
