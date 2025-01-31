@@ -6,12 +6,12 @@ class FlashCardSets {
   final String description;
   final String status;
   final String userId;
-  // final List<FlashCard>? flashcards;
+  List<FlashCard>? flashcards;
 
   FlashCardSets({
     required this.id,
     required this.title,
-    // required this.flashcards,
+    this.flashcards,
     required this.status,
     required this.userId,
     required this.description,
@@ -26,6 +26,7 @@ class FlashCardSets {
       userId: map['user_id']?.toString() ?? '',
       description: map['description'],
       // flashcards: (map['flashcards'] as List<dynamic>).map((item) => FlashCard.fromMap(item)).toList(),
+      flashcards: null,
     );
   }
 }

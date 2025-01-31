@@ -9,10 +9,21 @@ class FlashcardSetController {
   final authService = AuthService();
 
   Future<void> createFlashCardSet(BuildContext context, String title, String status, String description) async {
+    final userResponse = await authService.getLoggedInUser();
+
+    if (userResponse == null || userResponse.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('User not found')),
+      );
+      await Future.delayed(Duration(seconds: 2));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+    }
+
     final response = await supabase.from('flash_card_set').insert({
       'title': title,
       'status': status,
       'description': description,
+      'userid': userResponse,
     }).select();
 
     if (response == null || response.isEmpty) {
