@@ -28,6 +28,9 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
   bool showAnswer = false;
   LinearGradient currentGradient = oceanBlueGradient;
   int currentIndex = 0;
+
+  final flipControl = FlipCardController();
+
   @override
   void initState() {
     super.initState();
@@ -90,44 +93,87 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          margin: EdgeInsets.only(left: 25),
-                          height: 300,
-                          width: 300,
+                        FlipCard(
+                          controller: flipControl,
+                          rotateSide: RotateSide.right,
+                          frontWidget: Container(
+                            margin: EdgeInsets.only(left: 25),
+                            height: 300,
+                            width: 300,
 
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withAlpha(38),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                  child: Container(
-                                padding: EdgeInsets.all(24),
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withAlpha(38),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Container(
+                                  padding: EdgeInsets.all(24),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
                                         ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                    ],
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              )),
-                            ],
+                                )),
+                              ],
+                            ),
+                            // child: FlipCard(),
                           ),
-                          // child: FlipCard(),
+                          backWidget: Container(
+                            margin: EdgeInsets.only(left: 25),
+                            height: 300,
+                            width: 300,
+
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withAlpha(38),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                    child: Container(
+                                  padding: EdgeInsets.all(24),
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                              ],
+                            ),
+                            // child: FlipCard(),
+                          ),
                         ),
                         SizedBox(
                           height: 20,
@@ -138,7 +184,8 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  showAnswer = !showAnswer;
+                                  // showAnswer = !showAnswer;
+                                  flipControl.flipcard();
                                 });
                               },
                               child: Text(
