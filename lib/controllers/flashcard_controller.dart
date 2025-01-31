@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FlashcardController {
-
   Future<void> createFlashCard(BuildContext context, String question, String answer) async {
     final response = await supabase.from('flash_card').insert({
       'title': 'Test',
       'question': question,
       'answer': answer,
       // 'set_id': 1,
-      
     }).select();
 
     if (response == null || response.isEmpty) {
@@ -39,7 +37,7 @@ class FlashcardController {
 
     final setIds = flashCardSets.map((set) => set['id']).toList();
     final response = await supabase.from('flash_card').select().inFilter('set_id', setIds);
- print(response); 
+    print(response);
 
     if (response == null || response.isEmpty) {
       print('No flashcards found for public sets');
@@ -49,7 +47,17 @@ class FlashcardController {
     return response.map<FlashCard>((flashCard) => FlashCard.fromMap(flashCard)).toList();
   }
 
- 
+  Future<List<FlashCard>> retrieveFlashCardFromSet(int setId) async {
+    print(setId);
+    final response = await supabase.from('flash_card').select().eq('set_id', setId);
+
+    if (response == null || response.isEmpty) {
+      print("The response output $response ");
+      // print('Failed to retrieve flashcards');
+      return [];
+    }
+    print(response);
+
+    return response.map<FlashCard>((flashCard) => FlashCard.fromMap(flashCard)).toList();
+  }
 }
-
-

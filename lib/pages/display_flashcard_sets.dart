@@ -65,13 +65,14 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
                             return GestureDetector(
                               onTap: () {
                                 // To use a flashcard set. Maybe better to use hero not sure yet
-                               Navigator.push(
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ViewFlashCard(flashcardSet: flashCardSets[index],),
+                                    builder: (context) => ViewFlashCard(
+                                      flashcardSet: flashCardSets[index],
+                                    ),
                                   ),
                                 );
-
 
 //Not working yet
                               },
@@ -97,6 +98,30 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
           ],
         ),
       ),
+
+      //TODO Improve this visually
+      // bottomNavigationBar: BottomNavigationBar(
+      //   selectedItemColor: Colors.grey,
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   unselectedItemColor: Colors.grey,
+      //   type: BottomNavigationBarType.fixed,
+      //   currentIndex: 0,
+      //   onTap: (index) {
+      //     // if (index == 0) {
+      //     //   Navigator.pushReplacement(
+      //     //     context,
+      //     //     MaterialPageRoute(builder: (context) => const HomePage()),
+      //     //   );
+      //     // }
+
+      //   },
+      //   items: const [
+      //     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+      //     BottomNavigationBarItem(icon: Icon(Icons.history), label: 'Public flashcards'),
+      //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'my flashcards')
+      //   ],
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // flashCardSetController.retrievePublicFlashCardSets();
