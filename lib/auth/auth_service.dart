@@ -59,9 +59,7 @@ class AuthService {
     return username;
   }
 
-
-
- Future<bool> isEmailAvailable(String email) async {
+  Future<bool> isEmailAvailable(String email) async {
     try {
       final response = await supabase.from('person').select().match({'email': email}).maybeSingle();
 
@@ -75,12 +73,10 @@ class AuthService {
   bool isValidEmail(String email) {
     final emailRegex = RegExp(r'^[a-zA-Z0-9_]{3,}$');
     return emailRegex.hasMatch(email);
-  } 
+  }
 
-
-    Future<bool> isUsernameAvailable(String username) async {
+  Future<bool> isUsernameAvailable(String username) async {
     try {
-    
       final response = await Supabase.instance.client.from('person').select().match({'username': username}).maybeSingle();
 
       return response == null;
@@ -88,6 +84,42 @@ class AuthService {
       print('Error: $e');
       throw e;
     }
-  
+  }
+
+  Future<AuthResponse?> signUpWithEmaiPassword(String email, String password, String username) async {
+    try {
+      print("Signing up with email: $email, password: $password, username: $username");
+
+      final response = await supabase.auth.signUp(
+        email: email,
+        password: password,
+        data: {'username': username},
+      );
+
+      print(response);
+      if (response.user != null) {
+        final userId = response.user!.id;
+        final insertResponse = await supabase.from('person').insert({
+          'id': userId,
+          'email': email,
+          'username': username,
+        });
+
+        if (insertResponse.error != null) {
+          throw Exception("database error: ${insertResponse.error!.message}");
+        }
+        print("User created");
+      }
+
+      return response;
+    } catch (e) {
+      print("Error during sign up: $e");
+      return null;
+    }
+  }
+
+  bool isValidUsername(String username) {
+    final usernameRegex = RegExp(r'^[a-zA-Z0-9_]{3,}$');
+    return usernameRegex.hasMatch(username);
   }
 }

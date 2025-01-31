@@ -4,6 +4,7 @@ import 'package:flash_card_app/auth/auth_provider.dart';
 import 'package:flash_card_app/auth/auth_service.dart';
 import 'package:flash_card_app/pages/create_flashcard.dart';
 import 'package:flash_card_app/pages/custom/custom_app_bar.dart';
+import 'package:flash_card_app/pages/login.dart';
 import 'package:flash_card_app/pages/sign-up.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class SignUpPage extends StatefulWidget {
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
+
 //TODO Finish further the userna,e
 class _SignUpPageState extends State<SignUpPage> {
   final authService = AuthService();
@@ -25,22 +27,47 @@ class _SignUpPageState extends State<SignUpPage> {
   final confirmPasswordController = TextEditingController();
   final usernameController = TextEditingController();
   bool isPasswordVisible = false;
-  Timer? emailDebounce;
 
   bool isConfirmPasswordVisible = false;
-  bool? isEmailAvailable;
 
+  //
+  bool? isNameAvaible;
+  bool? isEmailAvailable;
+  String usernameError = '';
+  Timer? usernameDebounce;
+  Timer? emailDebounce;
   @override
   void initState() {
     super.initState();
     emailListener(emailController, checkEmailAvailability);
+    usernameListener(usernameController, checkUsernameAvailability);
   }
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+
+    usernameController.dispose();
+    usernameDebounce?.cancel();
+    emailDebounce?.cancel();
     super.dispose();
+  }
+
+  void usernameListener(TextEditingController usernameController, Function(String) checkUsernameAvailability) {
+    usernameController.addListener(() {
+      if (usernameDebounce?.isActive ?? false) usernameDebounce?.cancel();
+      usernameDebounce = Timer(const Duration(milliseconds: 500), () {
+        final username = usernameController.text;
+        if (username.length > 3 && authService.isValidUsername(username)) {
+          checkUsernameAvailability(usernameController.text);
+        } else {
+          setState(() {
+            isNameAvaible = false;
+          });
+        }
+      });
+    });
   }
 
   emailListener(TextEditingController emailController, Function(String) checkEmailAvailability) {
@@ -72,6 +99,21 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
+  Future<void> checkUsernameAvailability(String username) async {
+    try {
+      final available = await authService.isUsernameAvailable(username);
+      setState(() {
+        isNameAvaible = available;
+      });
+    } catch (e) {
+      setState(() {
+        isNameAvaible = false;
+        usernameError = 'An error occurred while checking the username';
+      });
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
@@ -84,7 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             children: [
               CustomAppBar(
-                title: "Login",
+                title: "Sign-up",
                 onThemePressed: null,
                 onThemePressed2: null,
               ),
@@ -99,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           child: Column(
                             children: [
                               Text(
-                                "Welcome login!",
+                                "Welcome Sign-up!",
                                 style: GoogleFonts.poppins(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
@@ -111,11 +153,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                 height: 40,
                               ),
                               TextFormField(
-                                controller: emailController,
+                                controller: usernameController,
                                 decoration: InputDecoration(
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  labelText: 'Email',
-                                  hintText: "test@hotmail.com",
+                                  prefixIcon: const Icon(Icons.person),
+                                  labelText: 'username',
                                   hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                   filled: true,
                                   fillColor: Colors.white.withAlpha(51),
@@ -123,8 +164,45 @@ class _SignUpPageState extends State<SignUpPage> {
                                     borderRadius: BorderRadius.circular(12),
                                     borderSide: BorderSide.none,
                                   ),
+                                  suffixIcon: isNameAvaible == null
+                                      ? null
+                                      : isNameAvaible!
+                                          ? const Icon(Icons.check, color: Colors.green)
+                                          : const Icon(Icons.error, color: Colors.red),
                                   contentPadding: EdgeInsets.all(16),
                                 ),
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                style: TextStyle(color: Colors.white),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter some text';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              TextFormField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  prefixIcon: const Icon(Icons.email_outlined),
+                                  labelText: 'email',
+                                  hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
+                                  filled: true,
+                                  fillColor: Colors.white.withAlpha(51),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  suffixIcon: isEmailAvailable == null
+                                      ? null
+                                      : isEmailAvailable!
+                                          ? const Icon(Icons.check, color: Colors.green)
+                                          : const Icon(Icons.error, color: Colors.red),
+                                  contentPadding: EdgeInsets.all(16),
+                                ),
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
                                 style: TextStyle(color: Colors.white),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -189,7 +267,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       });
                                     },
                                   ),
-                                  labelText: 'Password',
+                                  labelText: 'Confirm password',
                                   hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                   filled: true,
                                   fillColor: Colors.white.withAlpha(51),
@@ -202,7 +280,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                 style: TextStyle(color: Colors.white),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please enter your password ';
+                                    return 'Please enter your password here ';
+                                  }
+                                  if (value != passwordController.text) {
+                                    return 'Passwords are not the same';
                                   }
                                   return null;
                                 },
@@ -211,8 +292,21 @@ class _SignUpPageState extends State<SignUpPage> {
                                 height: 32,
                               ),
                               ElevatedButton(
-                                onPressed: () {
-                                  authService.checkUser(emailController.text, passwordController.text, formKey, authProvider, context);
+                                onPressed: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    final response = await authService.signUpWithEmaiPassword(
+                                      emailController.text,
+                                      passwordController.text,
+                                      usernameController.text,
+                                    );
+                                    if (response != null && response.user != null) {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                                    } else {
+                                      ScaffoldMessenger.of(context).showSnackBar(
+                                        SnackBar(content: Text('Sign up failed. Please try again.')),
+                                      );
+                                    }
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
@@ -231,15 +325,15 @@ class _SignUpPageState extends State<SignUpPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "Don''t have an account",
+                                    "Already have an account, ",
                                     style: GoogleFonts.poppins(color: Colors.white.withAlpha(204)),
                                   ),
                                   TextButton(
                                       onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
                                       },
                                       child: Text(
-                                        "Sign up!",
+                                        "Login in!",
                                         style: GoogleFonts.poppins(
                                             // fontWeight: FontWeight.bold,
                                             //  color: null
