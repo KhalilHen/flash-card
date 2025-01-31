@@ -28,6 +28,7 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
   bool showAnswer = false;
   LinearGradient currentGradient = oceanBlueGradient;
   int currentIndex = 0;
+  bool isFlipping = false;
 
   final flipControl = FlipCardController();
 
@@ -52,13 +53,48 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
 
   void nextCard() {
     setState(() {
+      isFlipping = true;
+      if (flipControl.state?.isFront == false) {
+        flipControl.flipcard();
+      }
       if (currentIndex < flashCards.length - 1) {
         currentIndex++;
       } else {
-        currentIndex = 0; // reset
+        currentIndex = 0;
       }
+      showAnswer = false;
+      Future.delayed(Duration(milliseconds: 300), () {
+        setState(() {
+          isFlipping = false;
+        });
+      });
     });
   }
+
+  // void nextCard() {
+  //   if (flipControl.state?.isFront == false) {
+  //     flipControl.flipcard();
+  //     Future.delayed(Duration(milliseconds: 200), () {
+  //       setState(() {
+  //         if (currentIndex < flashCards.length - 1) {
+  //           currentIndex++;
+  //         } else {
+  //           currentIndex = 0;
+  //         }
+  //         showAnswer = false;
+  //       });
+  //     });
+  //   } else {
+  //     setState(() {
+  //       if (currentIndex < flashCards.length - 1) {
+  //         currentIndex++;
+  //       } else {
+  //         currentIndex = 0;
+  //       }
+  //       showAnswer = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +152,7 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                          flashCards[currentIndex].question,
                                           style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             color: Colors.white,
@@ -155,14 +191,19 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          flashCards[currentIndex].answer,
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          textAlign: TextAlign.center,
+                                          !isFlipping ? flashCards[currentIndex].answer : '',
                                         ),
+                                        // isFlipping == true
+                                        //     ? Text(
+                                        //         flashCards[currentIndex].answer,
+                                        //         style: GoogleFonts.poppins(
+                                        //           fontSize: 18,
+                                        //           color: Colors.white,
+                                        //           fontWeight: FontWeight.bold,
+                                        //         ),
+                                        //         textAlign: TextAlign.center,
+                                        //       )
+                                        //     : Text('Test'),
                                         SizedBox(
                                           height: 16,
                                         ),
@@ -202,15 +243,9 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               width: 10,
                             ),
                             ElevatedButton(
-                              onPressed: () async {
-                                if (showAnswer == false) {
-                                  showAnswer = true;
-                                  flipControl.flipcard();
-                                  await Future.delayed(Duration(seconds: 3));
-                                  nextCard();
-                                } else {
-                                  nextCard();
-                                }
+                              onPressed: () {
+                                // await Future.delayed(Duration(seconds: 3));
+                                nextCard();
                               },
                               child: Text(
                                 "Next ",
