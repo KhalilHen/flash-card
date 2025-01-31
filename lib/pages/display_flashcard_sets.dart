@@ -6,6 +6,7 @@ import 'package:flash_card_app/pages/view_flash_cards.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flash_card_app/style/theme_styles.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class DisplayFlashcardSets extends StatefulWidget {
@@ -61,10 +62,8 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
                         return ListView.builder(
                           itemCount: flashCardSets.length,
                           itemBuilder: (context, index) {
-                            //TODO Improve it visual later
                             return GestureDetector(
                               onTap: () {
-                                // To use a flashcard set. Maybe better to use hero not sure yet
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -73,21 +72,35 @@ class _DisplayFlashcardSetsState extends State<DisplayFlashcardSets> {
                                     ),
                                   ),
                                 );
-
-//Not working yet
                               },
-                              child: Card(
-                                child: ListTile(
-                                  leading: Icon(Icons.book),
-                                  title: Text(flashCardSets[index].title ?? "Title"),
-                                  subtitle: Text(
-                                    // flashCardSets[index].descruotuib ?? "Description",
-                                    flashCardSets[index].description ?? "Description",
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withAlpha(38),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
 
+                                // **Note In future  change text color some white some dark. Baewd on some theme
+                                child: ListTile(
+                                  leading: Icon(
+                                    Icons.book,
+                                    color: Colors.white,
+                                  ),
+                                  title: Text(
+                                    flashCardSets[index].title ?? "Title",
+                                    style: GoogleFonts.poppins(color: Colors.white),
+                                  ),
+                                  subtitle: Text(
+                                    flashCardSets[index].description ?? "Description",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
+                                    style: GoogleFonts.poppins(color: Colors.white),
                                   ),
-                                  trailing: Icon(Icons.arrow_forward),
+                                  trailing: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             );
