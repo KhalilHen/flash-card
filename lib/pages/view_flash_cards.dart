@@ -155,7 +155,7 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          showAnswer ? flashCards[currentIndex].answer : flashCards[currentIndex].question,
+                                          flashCards[currentIndex].answer,
                                           style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             color: Colors.white,
@@ -184,7 +184,7 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                             ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  // showAnswer = !showAnswer;
+                                  showAnswer = !showAnswer;
                                   flipControl.flipcard();
                                 });
                               },
@@ -202,8 +202,15 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               width: 10,
                             ),
                             ElevatedButton(
-                              onPressed: () {
-                                nextCard();
+                              onPressed: () async {
+                                if (showAnswer == false) {
+                                  showAnswer = true;
+                                  flipControl.flipcard();
+                                  await Future.delayed(Duration(seconds: 3));
+                                  nextCard();
+                                } else {
+                                  nextCard();
+                                }
                               },
                               child: Text(
                                 "Next ",
