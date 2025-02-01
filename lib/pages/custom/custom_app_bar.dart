@@ -1,9 +1,11 @@
+import 'package:flash_card_app/auth/auth_provider.dart';
 import 'package:flash_card_app/pages/login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flash_card_app/pages/homepage.dart';
+import 'package:provider/provider.dart';
 
 // import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
@@ -35,35 +37,24 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          onThemePressed == null
-              ? Row(
-                  children: [
+          Consumer<AuthProvider>(
+            builder: (context, authProvider, child) {
+              return Row(
+                children: [
+                  if (onThemePressed == null) ...[
                     IconButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                        );
                       },
                       icon: const Icon(Icons.home),
                       color: Colors.white.withAlpha(77),
                       tooltip: "Go to homepage",
                       iconSize: 38,
                     ),
-                    CircleAvatar(
-                      backgroundColor: Colors.white.withAlpha(77),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
-                          );
-                        },
-                        icon: Icon(Icons.person),
-                        tooltip: "View profile",
-                      ),
-                    ),
-                  ],
-                )
-              : Row(
-                  children: [
+                  ] else ...[
                     IconButton(
                       onPressed: onThemePressed,
                       icon: const Icon(Icons.palette),
@@ -71,16 +62,29 @@ class CustomAppBar extends StatelessWidget {
                       tooltip: "Change theme",
                       iconSize: 38,
                     ),
-                    CircleAvatar(
-                      backgroundColor: Colors.white.withAlpha(77),
-                      child: IconButton(
-                        onPressed: onThemePressed2, icon: Icon(Icons.person),
-                        tooltip: "View profile",
-                        //  color: Colors.white
-                      ),
-                    ),
                   ],
-                ),
+                  CircleAvatar(
+                    backgroundColor: Colors.white.withAlpha(77),
+                    child: IconButton(
+                      onPressed: () {
+                        if (authProvider.isLoggedIn) {
+                          authProvider.logOut();
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                        }
+                      },
+                      icon: Icon(authProvider.isLoggedIn ? Icons.logout : Icons.person),
+                      tooltip: authProvider.isLoggedIn ? "Logout" : "View profile",
+                      color: Colors.white.withAlpha(77),
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
 
           //  onThemePressed == null && onThemePressed3 != null ?
 
