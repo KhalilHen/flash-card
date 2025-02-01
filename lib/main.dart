@@ -13,6 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //* Here topsecret supabase intialization
 
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ThemeProvider>(
@@ -38,7 +39,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      // home: CreateFlashCard(),
+      debugShowCheckedModeBanner: false,
+      // home: CreateFlashCard(), 
+      // home: HomePage(),
+      
       home: HomePage(),
     );
   }

@@ -8,6 +8,7 @@ import 'package:flash_card_app/pages/login.dart';
 import 'package:flash_card_app/pages/sign-up.dart';
 import 'package:flash_card_app/style/theme_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
   String usernameError = '';
   Timer? usernameDebounce;
   Timer? emailDebounce;
+
   @override
   void initState() {
     super.initState();
@@ -399,16 +401,19 @@ class _SignUpPageState extends State<SignUpPage> {
                                     style: GoogleFonts.poppins(color: Colors.white.withAlpha(204)),
                                   ),
                                   TextButton(
-                                      onPressed: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
-                                      },
+                                      onPressed: () {},
+                                      //*Doesn't work
+                                      // onPressed: () {
+                                      //   Get.to(
+                                      //     () => LoginPage(),
+                                      //     transition: Transition.rightToLeft,
+                                      //     duration: Duration(milliseconds: 300),
+                                      //   );
+                                      // },
                                       child: Text(
                                         "Login in!",
-                                        style: GoogleFonts.poppins(
-                                            // fontWeight: FontWeight.bold,
-                                            //  color: null
-                                            color: Colors.white.withAlpha(204)),
-                                      ))
+                                        style: GoogleFonts.poppins(color: Colors.white.withAlpha(204)),
+                                      )),
                                 ],
                               )
                             ],
