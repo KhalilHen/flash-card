@@ -110,20 +110,34 @@ class MyFlashCardSets extends StatelessWidget {
 
 //Not working yet
                               },
-                              child: ListTile(
-                                leading: Icon(Icons.book),
-                                title: Text(
-                                  flashCardSets[index].title ?? "Title",
-                                  style: GoogleFonts.poppins(),
+                              child: Container(
+                                margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withAlpha(38),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                subtitle: Text(
-                                  // flashCardSets[index].descruotuib ?? "Description",
-                                  flashCardSets[index].description ?? "Description",
+                                child: ListTile(
+                                  leading: Icon(
+                                    Icons.book,
+                                    color: Colors.white,
+                                  ),
+                                  title: Text(
+                                    flashCardSets[index].title ?? "Title",
+                                    style: GoogleFonts.poppins(color: Colors.white),
+                                  ),
+                                  subtitle: Text(
+                                    // flashCardSets[index].descruotuib ?? "Description",
+                                    flashCardSets[index].description ?? "Description",
 
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                  trailing: Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                                trailing: Icon(Icons.arrow_forward),
                               ),
                             );
                           },
