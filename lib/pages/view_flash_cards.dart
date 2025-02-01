@@ -240,8 +240,10 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               ),
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,
+                                backgroundColor: Colors.white.withAlpha(51),
                                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                elevation: 0,
                               ),
                             ),
                             SizedBox(
@@ -258,8 +260,10 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               ),
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,
+                                backgroundColor: Colors.white.withAlpha(51),
                                 padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                elevation: 0,
                               ),
                             )
                           ],

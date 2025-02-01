@@ -72,12 +72,15 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-
                                 child: TextFormField(
                                   controller: emailController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.email_outlined),
+                                    prefixIcon: const Icon(
+                                      Icons.email_outlined,
+                                      color: Colors.white,
+                                    ),
                                     labelText: 'Email',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintText: "test@hotmail.com",
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
@@ -104,15 +107,19 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-
                                 child: TextFormField(
                                   obscureText: !isPasswordVisible,
                                   controller: passwordController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
+                                    prefixIcon: const Icon(
+                                      Icons.lock_outline,
+                                      color: Colors.white,
+                                    ),
                                     suffixIcon: IconButton(
                                       icon: Icon(
                                         isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                        color: Colors.white,
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -148,12 +155,19 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
+                                    backgroundColor: Colors.white.withAlpha(51),
                                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                  elevation: 0,
                                 ),
                                 child: Text(
                                   "Login",
-                                  style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                                  style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+
+                                      // color: Color(0xFF6448FE)
+                                      color: Colors.white),
                                 ),
                               ),
                               SizedBox(
@@ -191,7 +205,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-   
     );
   }
 }

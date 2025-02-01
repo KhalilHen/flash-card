@@ -157,8 +157,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 child: TextFormField(
                                   controller: usernameController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.person),
+                                    prefixIcon: const Icon(
+                                      Icons.person,
+                                      color: Colors.white,
+                                    ),
                                     labelText: 'username',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
                                     fillColor: Colors.white.withAlpha(51),
@@ -191,8 +195,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 child: TextFormField(
                                   controller: emailController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.email_outlined),
+                                    prefixIcon: const Icon(
+                                      Icons.email_outlined,
+                                      color: Colors.white,
+                                    ),
                                     labelText: 'email',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
                                     fillColor: Colors.white.withAlpha(51),
@@ -228,10 +236,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                   obscureText: !isPasswordVisible,
                                   controller: passwordController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    prefixIcon: const Icon(
+                                      Icons.lock_outline,
+                                      color: Colors.white,
+                                    ),
                                     suffixIcon: IconButton(
                                       icon: Icon(
                                         isPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                        color: Colors.white,
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -240,6 +252,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       },
                                     ),
                                     labelText: 'Password',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
                                     fillColor: Colors.white.withAlpha(51),
@@ -267,10 +280,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                   obscureText: !isConfirmPasswordVisible,
                                   controller: confirmPasswordController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.lock_outline),
+                                    prefixIcon: const Icon(
+                                      Icons.lock_outline,
+                                      color: Colors.white,
+                                    ),
                                     suffixIcon: IconButton(
                                       icon: Icon(
                                         isConfirmPasswordVisible ? Icons.visibility_off : Icons.visibility,
+                                        color: Colors.white,
                                       ),
                                       onPressed: () {
                                         setState(() {
@@ -279,6 +296,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       },
                                     ),
                                     labelText: 'Confirm password',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
                                     fillColor: Colors.white.withAlpha(51),
@@ -322,8 +340,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
+                                  backgroundColor: Colors.white.withAlpha(51),
                                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                  elevation: 0,
                                 ),
                                 child: Text(
                                   "Sign up!",

@@ -77,11 +77,13 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                               controller: questionController,
                               decoration: InputDecoration(
                                 labelText: 'Question',
+                                labelStyle: GoogleFonts.poppins(color: Colors.white),
                                 hintText: "How many stripes has a zebra",
                                 hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                 filled: true,
                                 prefixIcon: Icon(
                                   Icons.quiz,
+                                  color: Colors.white,
                                 ),
                                 fillColor: Colors.white.withAlpha(51),
                                 border: OutlineInputBorder(
@@ -108,9 +110,13 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                               maxLines: 3,
                               controller: answerController,
                               decoration: InputDecoration(
+                                labelStyle: GoogleFonts.poppins(color: Colors.white),
                                 labelText: 'Anwser',
                                 hintText: "Too much",
-                                prefixIcon: Icon(Icons.check_circle_outline),
+                                prefixIcon: Icon(
+                                  Icons.check_circle_outline,
+                                  color: Colors.white,
+                                ),
                                 hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                 filled: true,
                                 fillColor: Colors.white.withAlpha(51),
@@ -142,7 +148,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                               dropdownColor: Colors.white.withAlpha(230),
                               decoration: InputDecoration(
                                 labelText: 'Flashcard set',
-                                labelStyle: TextStyle(color: Colors.white),
+                                labelStyle: GoogleFonts.poppins(color: Colors.white),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide(color: Colors.white.withAlpha(128)),
@@ -154,7 +160,7 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                                 filled: true,
                                 fillColor: Colors.white.withAlpha(25),
                               ),
-                              style: TextStyle(color: Colors.white),
+                              style: GoogleFonts.poppins(color: Colors.white),
                               icon: Icon(Icons.arrow_drop_down, color: Colors.white),
                               items: flashCardSetTitles.map((String value) {
                                 return DropdownMenuItem<String>(
@@ -181,13 +187,10 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                                 ),
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 40,
-                                vertical: 15,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
+                              backgroundColor: Colors.white.withAlpha(51),
+                              padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                              elevation: 0,
                             ),
                           ),
                         ],
@@ -198,8 +201,6 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
           ),
         ),
       ),
-
-     
     );
   }
 }

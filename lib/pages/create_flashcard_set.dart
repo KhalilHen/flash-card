@@ -82,8 +82,12 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                                 child: TextFormField(
                                   controller: titleController,
                                   decoration: InputDecoration(
-                                    prefixIcon: const Icon(Icons.title),
+                                    prefixIcon: const Icon(
+                                      Icons.title,
+                                      color: Colors.white,
+                                    ),
                                     labelText: 'Title',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
                                     hintText: "History",
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
@@ -114,10 +118,15 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                                   decoration: InputDecoration(
                                     // prefixIcon: const Icon(Icons.email_outlined),
                                     labelText: 'Description',
+                                    labelStyle: GoogleFonts.poppins(color: Colors.white),
+
                                     hintText: "This is a set about history",
                                     hintStyle: TextStyle(color: Colors.white.withAlpha(128)),
                                     filled: true,
-                                    prefixIcon: Icon(Icons.description),
+                                    prefixIcon: Icon(
+                                      Icons.description,
+                                      color: Colors.white,
+                                    ),
                                     fillColor: Colors.white.withAlpha(51),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
@@ -172,8 +181,10 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
+                                  backgroundColor: Colors.white.withAlpha(51),
                                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                  elevation: 0,
                                 ),
                                 child: Text(
                                   "Create",
@@ -195,7 +206,6 @@ class _CreateFlashcardSetState extends State<CreateFlashcardSet> {
           ),
         ),
       ),
-    
     );
   }
 }
