@@ -1,16 +1,36 @@
-# flash_card_app
+# FlashCard Study App
 
-A new Flutter project.
+A Flutter-based flashcard application that helps users create and study with digital flashcard sets. Built with Flutter and Supabase for backend services.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+### 🔐 Authentication
+- Email/password signup and login
+- Secure authentication powered by Supabase
+- User profile management
 
-A few resources to get you started if this is your first Flutter project:
+### 📝 Flashcard Management
+- Create personal flashcard sets
+- Set visibility (public/private)
+- Add, flashcards within sets
+- Organize cards by topics/subjects sets
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 📚 Study Features
+- Browse all public flashcard sets
+- Interactive study mode
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 🎨 Customization
+- Multiple theme options
+- Customizable UI colors
+- Dark/light mode support
+- Gradient background styles
+
+## 🛠️ Tech Stack
+- Flutter
+- Supabase (Backend)
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/yourusername/flashcard-app.git
