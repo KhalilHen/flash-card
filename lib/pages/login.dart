@@ -155,9 +155,9 @@ class _LoginPageState extends State<LoginPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   foregroundColor: Colors.white,
-                                    backgroundColor: Colors.white.withAlpha(51),
+                                  backgroundColor: Colors.white.withAlpha(51),
                                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.white.withAlpha(77))),
                                   elevation: 0,
                                 ),
                                 child: Text(

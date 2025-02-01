@@ -173,8 +173,26 @@ class _SignUpPageState extends State<SignUpPage> {
                                     suffixIcon: isNameAvaible == null
                                         ? null
                                         : isNameAvaible!
-                                            ? const Icon(Icons.check, color: Colors.green)
-                                            : const Icon(Icons.error, color: Colors.red),
+                                            ? const Icon(
+                                                Icons.check,
+                                                color: Colors.green,
+                                                shadows: [Shadow(blurRadius: 2, color: Colors.black, offset: Offset(1, 1))],
+                                              )
+                                            : const Icon(
+                                                Icons.error,
+                                                color: Colors.red,
+                                                shadows: [Shadow(blurRadius: 2, color: Colors.black, offset: Offset(1, 1))],
+                                              ),
+                                    //*not the styling i like biti too mcuh
+                                    // errorStyle: GoogleFonts.poppins(
+                                    //     fontSize: 14,
+
+                                    //     // fontWeight:
+                                    //     //  FontWeight.bold,
+
+                                    //     shadows: [Shadow(blurRadius: 2, color: Colors.black, offset: Offset(1, 0.5))
+
+                                    //     ]),
                                     contentPadding: EdgeInsets.all(16),
                                   ),
                                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -211,8 +229,23 @@ class _SignUpPageState extends State<SignUpPage> {
                                     suffixIcon: isEmailAvailable == null
                                         ? null
                                         : isEmailAvailable!
-                                            ? const Icon(Icons.check, color: Colors.green)
-                                            : const Icon(Icons.error, color: Colors.red),
+                                            ? Icon(Icons.check, color: Colors.green, shadows: [Shadow(blurRadius: 2, color: Colors.black, offset: Offset(1, 1))])
+                                            // ? Icons.check,
+                                            // color: Colors.green,
+                                            // shadows: [Shadow(blurRadius: 2, color: Colors.black, offset: Offset(1, 1))],
+                                            : const Icon(
+                                                Icons.error,
+                                                color: Colors.red,
+                                                shadows: [
+                                                  Shadow(
+                                                      blurRadius: 2,
+                                                      //for
+                                                      color: Colors.black,
+                                                      offset: Offset(1, 1)
+                                                      // format
+                                                      )
+                                                ],
+                                              ),
                                     contentPadding: EdgeInsets.all(16),
                                   ),
                                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -347,7 +380,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                                 child: Text(
                                   "Sign up!",
-                                  style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 16, fontWeight: FontWeight.bold,
+
+                                    color: Colors.white,
+                                    //  color: Color(0xFF6448FE)
+                                  ),
                                 ),
                               ),
                               SizedBox(
