@@ -33,4 +33,4 @@ A Flutter-based flashcard application that helps users create and study with dig
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/flashcard-app.git
+git clone https://github.com/KhalilHen/flash-card.git
