@@ -171,23 +171,6 @@ class MyFlashCardSets extends StatelessWidget {
       //     BottomNavigationBarItem(icon: Icon(Icons.person), label: 'my flashcards')
       //   ],
       // ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => CreateFlashcardSet()));
-        },
-        backgroundColor: Colors.white,
-        icon: Icon(
-          Icons.add,
-          color: Color(0xFF6448FE),
-        ),
-        label: Text(
-          "Create Set",
-          style: TextStyle(
-            color: Color(0xFF6448FE),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
     );
   }
 
