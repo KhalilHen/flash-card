@@ -92,14 +92,62 @@ class _HomepageState extends State<HomePage> {
                         }
                       ],
                     ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 25),
+
+                          // padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Recent sets",
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withAlpha(38),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    "Your recent flashcard sets will appear here",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 16,
+                                      color: Colors.white.withAlpha(204),
+                                    ),
+                                  ),
+
+                                  // **For in the future
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
-            )
+            ),
           ],
         )),
       ),
-  
     );
   }
 
