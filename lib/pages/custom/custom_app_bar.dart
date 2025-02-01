@@ -74,9 +74,9 @@ class CustomAppBar extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.white.withAlpha(77),
                       child: IconButton(
-                        onPressed: onThemePressed2,
-                        icon: Icon(Icons.person),
+                        onPressed: onThemePressed2, icon: Icon(Icons.person),
                         tooltip: "View profile",
+                        //  color: Colors.white
                       ),
                     ),
                   ],

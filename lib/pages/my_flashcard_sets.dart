@@ -129,7 +129,7 @@ class MyFlashCardSets extends StatelessWidget {
                                   subtitle: Text(
                                     // flashCardSets[index].descruotuib ?? "Description",
                                     flashCardSets[index].description ?? "Description",
-
+                                    style: GoogleFonts.poppins(color: Colors.white),
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 2,
                                   ),

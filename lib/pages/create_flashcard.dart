@@ -182,7 +182,13 @@ class _CreateFlashCardState extends State<CreateFlashCard> {
                                 flashCardController.createFlashCard(context, questionController.text, answerController.text);
                               }
                             },
-                            child: Text('Create Flashcard', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE))
+                            child: Text('Create Flashcard',
+                                style: GoogleFonts.poppins(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+
+                                    // color: Color(0xFF6448FE)
+                                    color: Colors.white)
                                 // color: Colors.white),
                                 ),
                             style: ElevatedButton.styleFrom(

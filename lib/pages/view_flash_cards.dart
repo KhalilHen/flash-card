@@ -236,7 +236,11 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               },
                               child: Text(
                                 "Show answer",
-                                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16, fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  // color: Color(0xFF6448FE)
+                                ),
                               ),
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,
@@ -256,7 +260,11 @@ class _ViewFlashCardState extends State<ViewFlashCard> {
                               },
                               child: Text(
                                 "Next ",
-                                style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF6448FE)),
+                                style: GoogleFonts.poppins(
+                                  fontSize: 16, fontWeight: FontWeight.bold,
+                                  // color: Color(0xFF6448FE)
+                                  color: Colors.white,
+                                ),
                               ),
                               style: ElevatedButton.styleFrom(
                                 foregroundColor: Colors.white,
